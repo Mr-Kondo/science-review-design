@@ -1,0 +1,50 @@
+{
+  "checked_on": "2026-10-11",
+  "files": {
+    "source-manifest.json": {
+      "before_sha256": "00c3b25a3819b0494c3f0296857ac8afcaa800a316e1ce4f6ab700a61d3a08e4",
+      "after_sha256": "00c3b25a3819b0494c3f0296857ac8afcaa800a316e1ce4f6ab700a61d3a08e4",
+      "unchanged": true
+    },
+    "how-to-use-with-claude-code.md": {
+      "before_sha256": "217eaa4f8ba8b0f31cd2e6ebd3fd0edd732b5d1d934b809fee1b3a6cb0d34c52",
+      "after_sha256": "217eaa4f8ba8b0f31cd2e6ebd3fd0edd732b5d1d934b809fee1b3a6cb0d34c52",
+      "unchanged": true
+    },
+    "claude-code-implementation-prompt.md": {
+      "before_sha256": "3f6d0894ab6f74579a13d00e1727d71f8e5c575c9ea5f2ad3870f23697b2ca84",
+      "after_sha256": "3f6d0894ab6f74579a13d00e1727d71f8e5c575c9ea5f2ad3870f23697b2ca84",
+      "unchanged": true
+    },
+    "research-and-design.md": {
+      "before_sha256": "1e873b7638f88c7fc6a79bc511c1a7daa8ea21e216b2bc92beabc6592d276f28",
+      "after_sha256": "1e873b7638f88c7fc6a79bc511c1a7daa8ea21e216b2bc92beabc6592d276f28",
+      "unchanged": true
+    },
+    "source-snapshot/SKILL.md": {
+      "before_sha256": "e0e4c818d35e2660c370a7bbfd5d13f3bea9744cc92c63852107d4880aa3c25a",
+      "after_sha256": "e0e4c818d35e2660c370a7bbfd5d13f3bea9744cc92c63852107d4880aa3c25a",
+      "unchanged": true
+    },
+    "source-snapshot/references/methods-and-sources.md": {
+      "before_sha256": "f2ee3122c3d469c014f1175d2fa96311961a4290c6dbf995053d0d1242d40a8e",
+      "after_sha256": "f2ee3122c3d469c014f1175d2fa96311961a4290c6dbf995053d0d1242d40a8e",
+      "unchanged": true
+    },
+    "source-snapshot/references/defy-context.md": {
+      "before_sha256": "b949b7b9b2ce4aad2c73178775b1c2735a1c64437f9f55098987039af9d114dc",
+      "after_sha256": "b949b7b9b2ce4aad2c73178775b1c2735a1c64437f9f55098987039af9d114dc",
+      "unchanged": true
+    },
+    "source-snapshot/references/evaluation-cases.md": {
+      "before_sha256": "7491073c7e480fe7660cf3c46de22568d57dcd9733ae6aad4207f27346a8058b",
+      "after_sha256": "7491073c7e480fe7660cf3c46de22568d57dcd9733ae6aad4207f27346a8058b",
+      "unchanged": true
+    },
+    "source-snapshot/scripts/dimcheck.py": {
+      "before_sha256": "d2d5afee57971e8268670ca966c9d962b1f6d152ad8d609a109b5a06bc8cc415",
+      "after_sha256": "d2d5afee57971e8268670ca966c9d962b1f6d152ad8d609a109b5a06bc8cc415",
+      "unchanged": true
+    }
+  }
+}

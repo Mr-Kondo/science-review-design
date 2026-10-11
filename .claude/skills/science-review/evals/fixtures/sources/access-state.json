@@ -1,0 +1,12 @@
+{
+  "synthetic": true,
+  "notice": "実際のHTTP結果・論文・書誌ではなく、出典取得状態を模した合成入力。外部接続は不要。",
+  "source_id": "E01",
+  "title": null,
+  "url": null,
+  "state": "取得不可",
+  "status_code": 403,
+  "search_snippet": "変換効率は95%という断片",
+  "full_text": null,
+  "page": null
+}

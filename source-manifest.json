@@ -1,0 +1,65 @@
+{
+  "checked_on": "2026-10-10",
+  "repository": "Mr-Kondo/Project_Defy",
+  "commit": "8a94b0e557ce6db4b98323fd8f31a92f75d1fdbb",
+  "status": "Design and implementation prompt prepared, including scientific idea advice; new skill not implemented or evaluated.",
+  "original_files": [
+    {
+      "path": "SKILL.md",
+      "repository_path": ".claude/skills/defy-science-review/SKILL.md",
+      "git_blob_sha": "01747097f0fc6e7dc6d1af1b32af4bfcb7be345c",
+      "url": "https://github.com/Mr-Kondo/Project_Defy/blob/8a94b0e557ce6db4b98323fd8f31a92f75d1fdbb/.claude/skills/defy-science-review/SKILL.md",
+      "access": "full source retrieved"
+    },
+    {
+      "path": "references/defy-context.md",
+      "repository_path": ".claude/skills/defy-science-review/references/defy-context.md",
+      "git_blob_sha": "bd59f1659b79c7db4bff6adf0126478a62638e51",
+      "url": "https://github.com/Mr-Kondo/Project_Defy/blob/8a94b0e557ce6db4b98323fd8f31a92f75d1fdbb/.claude/skills/defy-science-review/references/defy-context.md",
+      "access": "full source retrieved"
+    },
+    {
+      "path": "references/methods-and-sources.md",
+      "repository_path": ".claude/skills/defy-science-review/references/methods-and-sources.md",
+      "git_blob_sha": "ad51257b627f78e2f37d9552cfbef3911cfaef8e",
+      "url": "https://github.com/Mr-Kondo/Project_Defy/blob/8a94b0e557ce6db4b98323fd8f31a92f75d1fdbb/.claude/skills/defy-science-review/references/methods-and-sources.md",
+      "access": "full source retrieved"
+    },
+    {
+      "path": "references/evaluation-cases.md",
+      "repository_path": ".claude/skills/defy-science-review/references/evaluation-cases.md",
+      "git_blob_sha": "0937380bb79439761044e343338378427c438fe6",
+      "url": "https://github.com/Mr-Kondo/Project_Defy/blob/8a94b0e557ce6db4b98323fd8f31a92f75d1fdbb/.claude/skills/defy-science-review/references/evaluation-cases.md",
+      "access": "full source retrieved"
+    },
+    {
+      "path": "scripts/dimcheck.py",
+      "repository_path": ".claude/skills/defy-science-review/scripts/dimcheck.py",
+      "git_blob_sha": "761f812b059b83d34d2cd268017010d6b826fc99",
+      "url": "https://github.com/Mr-Kondo/Project_Defy/blob/8a94b0e557ce6db4b98323fd8f31a92f75d1fdbb/.claude/skills/defy-science-review/scripts/dimcheck.py",
+      "access": "full source retrieved"
+    }
+  ],
+  "external_skills": [
+    {
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills/blob/main/skills/scientific-critical-thinking/SKILL.md",
+      "git_blob_sha": "2a2fc151b5b13e4e11ece7410f21a14d5b25e30d",
+      "access": "SKILL.md full source retrieved; bundled references not retrieved; not installed or executed"
+    },
+    {
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills/blob/main/skills/literature-review/SKILL.md",
+      "git_blob_sha": "5178dce6419cee412155e7b9dd523d5b2ef703f5",
+      "access": "SKILL.md full source retrieved; bundled references not retrieved; not installed or executed"
+    },
+    {
+      "url": "https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md",
+      "git_blob_sha": "65b3a402dbd09b8e83f9d637c6b553875189085c",
+      "access": "SKILL.md full source retrieved; bundled references not retrieved; not installed or executed"
+    },
+    {
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills/blob/main/skills/peer-review/SKILL.md",
+      "git_blob_sha": "d4f3c3e3b5c19fec2518d569ded7e37ac96a964b",
+      "access": "SKILL.md full source retrieved; bundled references not retrieved; not installed or executed"
+    }
+  ]
+}

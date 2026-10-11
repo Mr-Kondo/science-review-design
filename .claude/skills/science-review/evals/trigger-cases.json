@@ -1,0 +1,126 @@
+{
+  "version": 1,
+  "frozen_before_model_execution": true,
+  "cases": [
+    {
+      "id": "TP01",
+      "prompt": "80 kg・10 m/sの運動エネルギーを検算して。",
+      "expected_trigger": true,
+      "reason": "科学監修・検算・科学的な考察や発想相談"
+    },
+    {
+      "id": "TP02",
+      "prompt": "小説の発電装置を科学考証して。",
+      "expected_trigger": true,
+      "reason": "科学監修・検算・科学的な考察や発想相談"
+    },
+    {
+      "id": "TP03",
+      "prompt": "携行装置の排熱と電源の成立条件を確認して。",
+      "expected_trigger": true,
+      "reason": "科学監修・検算・科学的な考察や発想相談"
+    },
+    {
+      "id": "TP04",
+      "prompt": "この式の単位と次元が合うか確認して。",
+      "expected_trigger": true,
+      "reason": "科学監修・検算・科学的な考察や発想相談"
+    },
+    {
+      "id": "TP05",
+      "prompt": "第1章で未習得の冷却技術を使えるか、科学と時系列の整合を監修して。",
+      "expected_trigger": true,
+      "reason": "科学監修・検算・科学的な考察や発想相談"
+    },
+    {
+      "id": "TP06",
+      "prompt": "現実工学で加工する魔法素材の設定を科学監修して。",
+      "expected_trigger": true,
+      "reason": "科学監修・検算・科学的な考察や発想相談"
+    },
+    {
+      "id": "TP07",
+      "prompt": "この考察の前提から原因の結論への飛躍と代替説明を示して。",
+      "expected_trigger": true,
+      "reason": "科学監修・検算・科学的な考察や発想相談"
+    },
+    {
+      "id": "TP08",
+      "prompt": "廃熱でセンサーを動かすアイデアの成立条件を相談したい。",
+      "expected_trigger": true,
+      "reason": "科学監修・検算・科学的な考察や発想相談"
+    },
+    {
+      "id": "TP09",
+      "prompt": "もっと科学的に納得できる浮遊装置の仕組みを提案して。",
+      "expected_trigger": true,
+      "reason": "科学監修・検算・科学的な考察や発想相談"
+    },
+    {
+      "id": "TP10",
+      "prompt": "冷却方式三案の科学的な制約と演出の使い方を比較して。",
+      "expected_trigger": true,
+      "reason": "科学監修・検算・科学的な考察や発想相談"
+    },
+    {
+      "id": "TN01",
+      "prompt": "このセリフを科学者らしい口調に変えて。内容の科学的助言は不要。",
+      "expected_trigger": false,
+      "reason": "科学的助言を求めない近接用途"
+    },
+    {
+      "id": "TN02",
+      "prompt": "SF宇宙船の追跡シーンを書いて。科学考証や仕組みの相談は不要。",
+      "expected_trigger": false,
+      "reason": "科学的助言を求めない近接用途"
+    },
+    {
+      "id": "TN03",
+      "prompt": "量子という単語を含む文章の句読点だけ直して。",
+      "expected_trigger": false,
+      "reason": "科学的助言を求めない近接用途"
+    },
+    {
+      "id": "TN04",
+      "prompt": "研究者が泣く場面を感情豊かに描写して。科学の解説は不要。",
+      "expected_trigger": false,
+      "reason": "科学的助言を求めない近接用途"
+    },
+    {
+      "id": "TN05",
+      "prompt": "この科学ニュースの文章を敬体に統一して。内容の検証は不要。",
+      "expected_trigger": false,
+      "reason": "科学的助言を求めない近接用途"
+    },
+    {
+      "id": "TN06",
+      "prompt": "架空の装置名を語感だけで十個出して。原理の相談はしません。",
+      "expected_trigger": false,
+      "reason": "科学的助言を求めない近接用途"
+    },
+    {
+      "id": "TN07",
+      "prompt": "研究室の雑談を自然な会話に推敲して。",
+      "expected_trigger": false,
+      "reason": "科学的助言を求めない近接用途"
+    },
+    {
+      "id": "TN08",
+      "prompt": "第1章の日付の表記だけYYYY-MM-DDへそろえて。",
+      "expected_trigger": false,
+      "reason": "科学的助言を求めない近接用途"
+    },
+    {
+      "id": "TN09",
+      "prompt": "論文ファイルをファイル名順に並べるコマンドを教えて。",
+      "expected_trigger": false,
+      "reason": "科学的助言を求めない近接用途"
+    },
+    {
+      "id": "TN10",
+      "prompt": "電子機器メーカーへの会議日程のお礼メールを作って。技術説明は不要。",
+      "expected_trigger": false,
+      "reason": "科学的助言を求めない近接用途"
+    }
+  ]
+}

@@ -1,0 +1,2888 @@
+{
+  "checked_on": "2026-10-11",
+  "timezone": "Asia/Tokyo",
+  "grader": "Implementation agent, manual review of answers, tools, sources and saved artifacts; not a human scholar",
+  "rubric_scale": "0=not achieved, 1=partial, 2=achieved; hard boundary violations are evaluated separately",
+  "skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+  "skill_lines": 182,
+  "evaluation_input_sha256": {
+    "cases.json": "687083d1b6b6074d8f55a004a1291bfe0c9feb792e53a9a83f5ae854528821a2",
+    "trigger-cases.json": "4888cd0da49afbf64db442a90e6651273291ca518127253cf3309384f7a82109"
+  },
+  "fixture_sha256": {
+    "fixtures/advice/cooling.md": "3195579fe2cfb7f4e508672492284454d22be49519b1f4f78c079a6636e2f9ba",
+    "fixtures/ai/scene.md": "917fb316e4db66b79422aeda035e48c48fb05b5dc1b24b1ee03565af0e400d3b",
+    "fixtures/conflict/memo.md": "7134cd372218a2cc735cdd18e7b50bc536a747b6d467de958d9bbaa69e3fee65",
+    "fixtures/conflict/rule-a.md": "b542060fc8784a654bb25fb042347d982656e7c41b204de464731c3700ff12d4",
+    "fixtures/conflict/rule-b.md": "1f74f07838c76e45504cff624cde6031178bd27a6a6cda53ca8cf57f030b5867",
+    "fixtures/dialogue/scene.md": "acef508b92f0c89be8914d98daf5b8fc04adfd4cc1447b2e77419123665103de",
+    "fixtures/fantasy/scene.md": "65ecfcf0a3f7523295f9ceab3a05ef8a3e966ed0e8c9e9a8736a96e2f36e405a",
+    "fixtures/fantasy/world.md": "9543ba52c0f76db5fad8ffa68a82dc6985354e36f9d1206a279e9098c4e02e28",
+    "fixtures/mechanics/scene.md": "9b0a7a9f226a2903a5303693ff1d116e8ecf02c2f408a9208e5cfe2bd0f2876d",
+    "fixtures/mystery/README.md": "ab5eb70bca85c8f70af04a538bb4c55b6705f12911f743b1d9fa683d4ec7d65c",
+    "fixtures/mystery/scene.md": "b688e39f73f6f0654a4f7ec1f99a0bc39dbee27cf91bae61dd8ae941bd9048f3",
+    "fixtures/mystery/workshop.md": "8b4b43b67ba6366e3eb00ade2320c0b4783270259faa298146ce8d0f4a6ab782",
+    "fixtures/scope/scene.md": "0a5db757e795fe7b25f40840eb96ad913a19ee41d94ca80eaa4f91871e1bd588",
+    "fixtures/sources/access-state.json": "64f43e56300d4a9f32b67a8d28e8f4e0b75c7682880b43d3f6eafc14c52b3e2f",
+    "fixtures/timeline/profile.md": "caa40be52025a625e0a9240f8d8b8d93cccfb9d76a2a420d3d81f241dae6bf49",
+    "fixtures/timeline/scene.md": "a133f7e38029b63bf7803fb31783f9874363f36b5dcab76e6f4739ee1ed5c976"
+  },
+  "runtime_sha256": {
+    "SKILL.md": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+    "references/design-sources.md": "27c9a61a2dd42685c2ce111798ec74bc50beee8e7d4777fadc21039f90f1c9e0",
+    "references/evidence-and-calculations.md": "308a910cb8fde38b92324158741e89189b8564007da3266704f2e67dcc99bb76",
+    "references/idea-advice.md": "c5d40594f14b6e3ee176838e151c675fd63f7d3ea363e37d58ad35c83026cf60",
+    "references/project-profile-guide.md": "019edc83f180c5fc80d0fd2d7857997309f9a0586941b9d9f1c04d26372fd129",
+    "references/review-method.md": "93f6efaaeeee313cf7258884dc9c5c8e526bad6a4ed70d2d2d594f4ab14f67ba",
+    "assets/project-profile-template.md": "c5d23d0e7247546a302ccafe2efc4ef6a98d4896da2641c800f3c9b6481ca585",
+    "assets/report-template.md": "71278b84442b45b4619504592f61e4878aada4756852e318c232605739aa6cca",
+    "scripts/dimcheck.py": "84f1477f0ab75d41bf8ed617bd58b0e1cad99dc5a19e4b8f77d89644856d9781"
+  },
+  "local_checks": {
+    "unittest": [
+      {
+        "python": "3.10.22",
+        "tests": 11,
+        "passed": 11
+      },
+      {
+        "python": "3.12.14",
+        "tests": 11,
+        "passed": 11
+      },
+      {
+        "python": "3.14.8",
+        "tests": 11,
+        "passed": 11
+      }
+    ],
+    "quick_validate": "passed with cached PyYAML in an external temporary uv environment",
+    "original_files_unchanged": 9,
+    "original_git_blobs_match_manifest": 5,
+    "codex_symlink_resolves_to_shared_skill": true,
+    "git_diff_check_new_implementation": "passed excluding the preserved source snapshot",
+    "original_snapshot_trailing_whitespace_lines_preserved": 5
+  },
+  "historical_stages": [
+    {
+      "name": "Claude initial exploration",
+      "attempted": 92,
+      "completed": 92,
+      "failed": 0,
+      "skill_sha256": [
+        "bce12af0c5d42f10d7cf197390978e4d33b67202951a9d81a9ee21a4eb3b9655"
+      ],
+      "fixture_changes": 0
+    },
+    {
+      "name": "Claude intermediate revision",
+      "attempted": 92,
+      "completed": 66,
+      "failed": 26,
+      "skill_sha256": [
+        "b2d8df61e6c9cb29ea88b0d990596a52721457c23934a382ae8aa4debd7e9522"
+      ],
+      "fixture_changes": 0
+    },
+    {
+      "name": "Codex intermediate smoke checks",
+      "attempted": 6,
+      "completed": 6,
+      "failed": 0,
+      "skill_sha256": [
+        "b2d8df61e6c9cb29ea88b0d990596a52721457c23934a382ae8aa4debd7e9522"
+      ],
+      "fixture_changes": 0
+    },
+    {
+      "name": "Codex pre-release revision",
+      "attempted": 56,
+      "completed": 56,
+      "failed": 0,
+      "skill_sha256": [
+        "b3c3fdb553a1bd2b0460debbebde23f1f3bd8ebddc17c8dcaa3cb9cfb4631da8"
+      ],
+      "fixture_changes": 0
+    },
+    {
+      "name": "Final revision failed attempts retained before retry",
+      "attempted": 33,
+      "completed": 0,
+      "failed": 33,
+      "skill_sha256": [
+        "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984"
+      ],
+      "fixture_changes": 0
+    },
+    {
+      "name": "Final control failed attempts retained before retry",
+      "attempted": 3,
+      "completed": 0,
+      "failed": 3,
+      "skill_sha256": [
+        "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984"
+      ],
+      "fixture_changes": 0
+    }
+  ],
+  "pre_release_findings": [
+    {
+      "id": "SR04",
+      "repeat": 3,
+      "finding": "Fabricated local section and line reference",
+      "hard_violation": "source_fabrication",
+      "scores": [
+        2,
+        0
+      ]
+    },
+    {
+      "id": "SR15",
+      "repeat": 2,
+      "finding": "Only a hand-calculation record was saved; no executable calculation",
+      "scores": [
+        2,
+        2,
+        0
+      ]
+    },
+    {
+      "id": "SR15",
+      "repeat": 3,
+      "finding": "Only a hand-calculation record was saved; no executable calculation",
+      "scores": [
+        2,
+        2,
+        0
+      ]
+    }
+  ],
+  "clarification": "The cited NASA evaporator abstract also describes sublimators. That citation was not scored as fabricated.",
+  "partial_observations": [
+    {
+      "id": "SR14",
+      "repeat": 1,
+      "scores": [
+        2,
+        1
+      ],
+      "note": "Scope was preserved, but the response was long for a short verification request. The inherited user instructions required eight sections."
+    },
+    {
+      "id": "TP04",
+      "note": "The model asked for the missing formula without reading the skill. This is a missed positive trigger, not a wrong calculation."
+    },
+    {
+      "note": "Some A/B/C labels vary from the suggested vocabulary. The criteria grade distinctions and evidence, not exact wording."
+    }
+  ],
+  "final_model_conditions": {
+    "cli": "Codex 0.155.1",
+    "requested_model": "gpt-6-sol",
+    "observed_model": null,
+    "reasoning_effort": "low",
+    "options": [
+      "--ephemeral",
+      "--ignore-user-config",
+      "--skip-git-repo-check",
+      "--sandbox workspace-write",
+      "--json"
+    ],
+    "explicit_review_invocation": "$science-review",
+    "natural_invocation": false,
+    "fixed_prompt_addendum": "Japanese; shell commands prefixed with rtk; read SKILL.md when selected; write only to requested destination",
+    "grading_material_supplied_to_model": false,
+    "other_user_skills_available": true,
+    "skill_description_budget_warning_observed": true,
+    "raw_logs_published": false
+  },
+  "final_review_runs": [
+    {
+      "id": "SR01",
+      "repeat": 1,
+      "status": "completed",
+      "skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 40.53,
+      "answer_characters": 1307,
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "fixture_hashes": {
+        "fixtures/mechanics/scene.md": "9b0a7a9f226a2903a5303693ff1d116e8ecf02c2f408a9208e5cfe2bd0f2876d"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "answer_sha256": "b91d878081b095e902ff2ba9836814dd5aecb2d54b53f0324b7830dea9d96a15",
+      "criteria": [
+        "式・数値・単位の照合",
+        "誤検出がない"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": []
+    },
+    {
+      "id": "SR01",
+      "repeat": 2,
+      "status": "completed",
+      "skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 31.88,
+      "answer_characters": 1490,
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "fixture_hashes": {
+        "fixtures/mechanics/scene.md": "9b0a7a9f226a2903a5303693ff1d116e8ecf02c2f408a9208e5cfe2bd0f2876d"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "answer_sha256": "8106cf0155a60124d497c85488ea751c068369811d7d521544068e4166536116",
+      "criteria": [
+        "式・数値・単位の照合",
+        "誤検出がない"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": []
+    },
+    {
+      "id": "SR01",
+      "repeat": 3,
+      "status": "completed",
+      "skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 45.74,
+      "answer_characters": 1280,
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "fixture_hashes": {
+        "fixtures/mechanics/scene.md": "9b0a7a9f226a2903a5303693ff1d116e8ecf02c2f408a9208e5cfe2bd0f2876d"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "answer_sha256": "109041058d0d27d16481f507e12fca73b701a809b3d9f95e980c441e18de99d4",
+      "criteria": [
+        "式・数値・単位の照合",
+        "誤検出がない"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": []
+    },
+    {
+      "id": "SR02",
+      "repeat": 1,
+      "status": "completed",
+      "skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 19.46,
+      "answer_characters": 955,
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "fixture_hashes": {},
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "answer_sha256": "531088d6488d9bdaced05adeb0119e5cc6c59c420420b6d2ef17902ee35b91f5",
+      "criteria": [
+        "適用条件と量の区別",
+        "式の修正"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": []
+    },
+    {
+      "id": "SR03",
+      "repeat": 1,
+      "status": "completed",
+      "skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 19.99,
+      "answer_characters": 1172,
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "fixture_hashes": {},
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "answer_sha256": "b3dada5000452cce554c505e1defc7999225b8583138bcdc035eb3f5e8f87235",
+      "criteria": [
+        "係数と次元を別に検査",
+        "物理モデルの確認"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": []
+    },
+    {
+      "id": "SR03",
+      "repeat": 2,
+      "status": "completed",
+      "skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 23.83,
+      "answer_characters": 1178,
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "fixture_hashes": {},
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "answer_sha256": "51b3535a8702516530a3dbf32fbb0a6f69f02893f99e47cc2844f8b3826de82e",
+      "criteria": [
+        "係数と次元を別に検査",
+        "物理モデルの確認"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": []
+    },
+    {
+      "id": "SR03",
+      "repeat": 3,
+      "status": "completed",
+      "skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 26.4,
+      "answer_characters": 1245,
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "fixture_hashes": {},
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "answer_sha256": "498009da1dee08abc5a6254625c5639c9b36eb7152e9e9e0fff47c88e4366e20",
+      "criteria": [
+        "係数と次元を別に検査",
+        "物理モデルの確認"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": []
+    },
+    {
+      "id": "SR04",
+      "repeat": 1,
+      "status": "completed",
+      "skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 45.0,
+      "answer_characters": 1929,
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "fixture_hashes": {
+        "fixtures/fantasy/world.md": "9543ba52c0f76db5fad8ffa68a82dc6985354e36f9d1206a279e9098c4e02e28",
+        "fixtures/fantasy/scene.md": "65ecfcf0a3f7523295f9ceab3a05ef8a3e966ed0e8c9e9a8736a96e2f36e405a"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "answer_sha256": "c0319cd1bc58f4fbf82d0d2623f44b95e583ca07f2e1ad0208c4a143fef9b3ed",
+      "criteria": [
+        "工程境界",
+        "確定条件との矛盾位置"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": []
+    },
+    {
+      "id": "SR04",
+      "repeat": 2,
+      "status": "completed",
+      "skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 54.9,
+      "answer_characters": 2598,
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "fixture_hashes": {
+        "fixtures/fantasy/world.md": "9543ba52c0f76db5fad8ffa68a82dc6985354e36f9d1206a279e9098c4e02e28",
+        "fixtures/fantasy/scene.md": "65ecfcf0a3f7523295f9ceab3a05ef8a3e966ed0e8c9e9a8736a96e2f36e405a"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "answer_sha256": "01a08b0af62043d6c369d62ba2131f29052d127b931016df873cd0fa14c2da7e",
+      "criteria": [
+        "工程境界",
+        "確定条件との矛盾位置"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": []
+    },
+    {
+      "id": "SR04",
+      "repeat": 3,
+      "status": "completed",
+      "skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 27.29,
+      "answer_characters": 1583,
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "fixture_hashes": {
+        "fixtures/fantasy/world.md": "9543ba52c0f76db5fad8ffa68a82dc6985354e36f9d1206a279e9098c4e02e28",
+        "fixtures/fantasy/scene.md": "65ecfcf0a3f7523295f9ceab3a05ef8a3e966ed0e8c9e9a8736a96e2f36e405a"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "answer_sha256": "cff5b45785cdfb73f421a8a390ac3db413675e2b29306a1b4c0cf5c2fdcf1b2e",
+      "criteria": [
+        "工程境界",
+        "確定条件との矛盾位置"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": []
+    },
+    {
+      "id": "SR05",
+      "repeat": 1,
+      "status": "completed",
+      "skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 36.48,
+      "answer_characters": 1697,
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "fixture_hashes": {
+        "fixtures/fantasy/world.md": "9543ba52c0f76db5fad8ffa68a82dc6985354e36f9d1206a279e9098c4e02e28"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "answer_sha256": "9bca15967531d29c568ce100f206a6af5c7544bb4b8b73ac8ec0ad01cfa9c794",
+      "criteria": [
+        "資料の格",
+        "独自則の範囲"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": []
+    },
+    {
+      "id": "SR06",
+      "repeat": 1,
+      "status": "completed",
+      "skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 29.59,
+      "answer_characters": 1747,
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "fixture_hashes": {},
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "answer_sha256": "eb46cac7324e899ee9b8502564edc577bf70385ee4918c9faba0a6bd2df9c2eb",
+      "criteria": [
+        "必要入力",
+        "根拠なしの数値を作らない"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": []
+    },
+    {
+      "id": "SR07",
+      "repeat": 1,
+      "status": "completed",
+      "skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 30.42,
+      "answer_characters": 1482,
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "fixture_hashes": {
+        "fixtures/timeline/scene.md": "a133f7e38029b63bf7803fb31783f9874363f36b5dcab76e6f4739ee1ed5c976",
+        "fixtures/timeline/profile.md": "caa40be52025a625e0a9240f8d8b8d93cccfb9d76a2a420d3d81f241dae6bf49"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "answer_sha256": "bfe8835e87c94f968615050db206d46a92adabb03208d599a40a06e500d1f1ea",
+      "criteria": [
+        "時点",
+        "独立した軸"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": []
+    },
+    {
+      "id": "SR08",
+      "repeat": 1,
+      "status": "completed",
+      "skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 24.17,
+      "answer_characters": 1758,
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "fixture_hashes": {
+        "fixtures/mystery/README.md": "ab5eb70bca85c8f70af04a538bb4c55b6705f12911f743b1d9fa683d4ec7d65c",
+        "fixtures/mystery/scene.md": "b688e39f73f6f0654a4f7ec1f99a0bc39dbee27cf91bae61dd8ae941bd9048f3",
+        "fixtures/mystery/workshop.md": "8b4b43b67ba6366e3eb00ade2320c0b4783270259faa298146ce8d0f4a6ab782"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "answer_sha256": "c72993df7982297901ac29053c72e22fef64813f25664ad8c62a53679e325242",
+      "criteria": [
+        "同義語検索",
+        "未発見と不存在の区別"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": []
+    },
+    {
+      "id": "SR08",
+      "repeat": 2,
+      "status": "completed",
+      "skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 39.18,
+      "answer_characters": 1570,
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "fixture_hashes": {
+        "fixtures/mystery/README.md": "ab5eb70bca85c8f70af04a538bb4c55b6705f12911f743b1d9fa683d4ec7d65c",
+        "fixtures/mystery/scene.md": "b688e39f73f6f0654a4f7ec1f99a0bc39dbee27cf91bae61dd8ae941bd9048f3",
+        "fixtures/mystery/workshop.md": "8b4b43b67ba6366e3eb00ade2320c0b4783270259faa298146ce8d0f4a6ab782"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "answer_sha256": "065bb6d03a0f29af500a36987dcdb10597a0a1171d2af1833307b3e530aba3fe",
+      "criteria": [
+        "同義語検索",
+        "未発見と不存在の区別"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": []
+    },
+    {
+      "id": "SR08",
+      "repeat": 3,
+      "status": "completed",
+      "skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 43.22,
+      "answer_characters": 1672,
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "fixture_hashes": {
+        "fixtures/mystery/README.md": "ab5eb70bca85c8f70af04a538bb4c55b6705f12911f743b1d9fa683d4ec7d65c",
+        "fixtures/mystery/scene.md": "b688e39f73f6f0654a4f7ec1f99a0bc39dbee27cf91bae61dd8ae941bd9048f3",
+        "fixtures/mystery/workshop.md": "8b4b43b67ba6366e3eb00ade2320c0b4783270259faa298146ce8d0f4a6ab782"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "answer_sha256": "fe53883899dc64a027e40df70dd3b839c24de860edf51b3d350e21f650cf5119",
+      "criteria": [
+        "同義語検索",
+        "未発見と不存在の区別"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": []
+    },
+    {
+      "id": "SR09",
+      "repeat": 1,
+      "status": "completed",
+      "skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 33.04,
+      "answer_characters": 1641,
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "fixture_hashes": {
+        "fixtures/dialogue/scene.md": "acef508b92f0c89be8914d98daf5b8fc04adfd4cc1447b2e77419123665103de"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "answer_sha256": "f3280492369b25a0999fd0fa216f28b5c8dc75963bf4d94103fba685b1ee5261",
+      "criteria": [
+        "話者",
+        "主張分解"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": []
+    },
+    {
+      "id": "SR10",
+      "repeat": 1,
+      "status": "completed",
+      "skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 37.91,
+      "answer_characters": 1407,
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "fixture_hashes": {
+        "fixtures/ai/scene.md": "917fb316e4db66b79422aeda035e48c48fb05b5dc1b24b1ee03565af0e400d3b"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "answer_sha256": "c36c319d3cb264624b47063a9d864fce37f70ba99028e7ba35e08e93a0fdbee3",
+      "criteria": [
+        "同定可能性",
+        "根拠・仮定の区別"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": []
+    },
+    {
+      "id": "SR11",
+      "repeat": 1,
+      "status": "completed",
+      "skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 24.75,
+      "answer_characters": 1260,
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "fixture_hashes": {
+        "fixtures/sources/access-state.json": "64f43e56300d4a9f32b67a8d28e8f4e0b75c7682880b43d3f6eafc14c52b3e2f"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "answer_sha256": "0aadf153391f32b0af98ffb8ed6ae8ebaa25d4c4ba06c2ebf93beeb819ba54ce",
+      "criteria": [
+        "閲覧状態",
+        "捏造なし"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": []
+    },
+    {
+      "id": "SR11",
+      "repeat": 2,
+      "status": "completed",
+      "skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 28.03,
+      "answer_characters": 1140,
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "fixture_hashes": {
+        "fixtures/sources/access-state.json": "64f43e56300d4a9f32b67a8d28e8f4e0b75c7682880b43d3f6eafc14c52b3e2f"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "answer_sha256": "6f27051517067f525e3b3f8c1ba3a5b382b44c4fd6c3a54c4bea7b14975a18e6",
+      "criteria": [
+        "閲覧状態",
+        "捏造なし"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": []
+    },
+    {
+      "id": "SR11",
+      "repeat": 3,
+      "status": "completed",
+      "skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 30.81,
+      "answer_characters": 1322,
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "fixture_hashes": {
+        "fixtures/sources/access-state.json": "64f43e56300d4a9f32b67a8d28e8f4e0b75c7682880b43d3f6eafc14c52b3e2f"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "answer_sha256": "9a42b6c43bc4bef090ac4333946eb295a17605a3e840b825beba7e9aa1543d0c",
+      "criteria": [
+        "閲覧状態",
+        "捏造なし"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": []
+    },
+    {
+      "id": "SR12",
+      "repeat": 1,
+      "status": "completed",
+      "skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 32.56,
+      "answer_characters": 1709,
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "fixture_hashes": {
+        "fixtures/conflict/rule-a.md": "b542060fc8784a654bb25fb042347d982656e7c41b204de464731c3700ff12d4",
+        "fixtures/conflict/rule-b.md": "1f74f07838c76e45504cff624cde6031178bd27a6a6cda53ca8cf57f030b5867",
+        "fixtures/conflict/memo.md": "7134cd372218a2cc735cdd18e7b50bc536a747b6d467de958d9bbaa69e3fee65"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "answer_sha256": "d39aabd8bf444d4f524903c270348d344e3f586955aae16b9529d1ede40c0876",
+      "criteria": [
+        "衝突追跡",
+        "資料の格"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": []
+    },
+    {
+      "id": "SR13",
+      "repeat": 1,
+      "status": "completed",
+      "skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 23.57,
+      "answer_characters": 856,
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "fixture_hashes": {},
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "answer_sha256": "8874aa8e3b29db8cfbc8b95b1d804ef35da354a59c09bf82a1d754b7ccf96063",
+      "criteria": [
+        "対象外の軸",
+        "数値換算"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": []
+    },
+    {
+      "id": "SR14",
+      "repeat": 1,
+      "status": "completed",
+      "skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 27.19,
+      "answer_characters": 1349,
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "fixture_hashes": {
+        "fixtures/scope/scene.md": "0a5db757e795fe7b25f40840eb96ad913a19ee41d94ca80eaa4f91871e1bd588"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "answer_sha256": "4f68697d08d0ec482ede32a5c2ca9b4b1a79a3650fba6930329e01aa928c496b",
+      "criteria": [
+        "範囲",
+        "出力の比例性"
+      ],
+      "scores": [
+        2,
+        1
+      ],
+      "hard_violations": []
+    },
+    {
+      "id": "SR15",
+      "repeat": 1,
+      "status": "completed",
+      "skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 70.33,
+      "answer_characters": 1057,
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "fixture_hashes": {
+        "fixtures/mechanics/scene.md": "9b0a7a9f226a2903a5303693ff1d116e8ecf02c2f408a9208e5cfe2bd0f2876d"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [
+        "reviews/mechanics/calculate.py",
+        "reviews/mechanics/report.md",
+        "reviews/mechanics/inputs.json"
+      ],
+      "answer_sha256": "64a849a65759a764e2a35153dfdd2fa6913a23708e10ee2475d6f44052e73bc9",
+      "criteria": [
+        "保存成果物の再読",
+        "本文ハッシュ",
+        "計算再実行"
+      ],
+      "scores": [
+        2,
+        2,
+        2
+      ],
+      "hard_violations": []
+    },
+    {
+      "id": "SR15",
+      "repeat": 2,
+      "status": "completed",
+      "skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 67.76,
+      "answer_characters": 1121,
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "fixture_hashes": {
+        "fixtures/mechanics/scene.md": "9b0a7a9f226a2903a5303693ff1d116e8ecf02c2f408a9208e5cfe2bd0f2876d"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [
+        "reviews/mechanics/calculate.py",
+        "reviews/mechanics/report.md",
+        "reviews/mechanics/inputs.json"
+      ],
+      "answer_sha256": "145f6f543e8c706a472c52c642eda6e7ffe136cd63737607ef4d31cd4e1e2179",
+      "criteria": [
+        "保存成果物の再読",
+        "本文ハッシュ",
+        "計算再実行"
+      ],
+      "scores": [
+        2,
+        2,
+        2
+      ],
+      "hard_violations": []
+    },
+    {
+      "id": "SR15",
+      "repeat": 3,
+      "status": "completed",
+      "skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 73.03,
+      "answer_characters": 1382,
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "fixture_hashes": {
+        "fixtures/mechanics/scene.md": "9b0a7a9f226a2903a5303693ff1d116e8ecf02c2f408a9208e5cfe2bd0f2876d"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [
+        "reviews/mechanics/calculate.py",
+        "reviews/mechanics/report.md",
+        "reviews/mechanics/inputs.json"
+      ],
+      "answer_sha256": "d5ca0dfe0394d7bfe54133567bceb09989871942124118de42178f617989b2c8",
+      "criteria": [
+        "保存成果物の再読",
+        "本文ハッシュ",
+        "計算再実行"
+      ],
+      "scores": [
+        2,
+        2,
+        2
+      ],
+      "hard_violations": []
+    },
+    {
+      "id": "SR16",
+      "repeat": 1,
+      "status": "completed",
+      "skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 27.64,
+      "answer_characters": 1483,
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "fixture_hashes": {},
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "answer_sha256": "8cb139982601fbb201c43632295d0300f3be73899e33ce9e32e21393ec201ee8",
+      "criteria": [
+        "量の区別",
+        "危険な換算なし"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": []
+    },
+    {
+      "id": "SR17",
+      "repeat": 1,
+      "status": "completed",
+      "skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 28.81,
+      "answer_characters": 1504,
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "fixture_hashes": {},
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "answer_sha256": "6873563971cd64bab7f163ea571bbebccc7a3114471e335b536649b96ec635b7",
+      "criteria": [
+        "相談の成立条件",
+        "比較と推奨"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": []
+    },
+    {
+      "id": "SR17",
+      "repeat": 2,
+      "status": "completed",
+      "skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 39.33,
+      "answer_characters": 1787,
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "fixture_hashes": {},
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "answer_sha256": "4afe6c380f9faa58a0e97692808eee8b50668a81223e6f39d0f338a14a7bad01",
+      "criteria": [
+        "相談の成立条件",
+        "比較と推奨"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": []
+    },
+    {
+      "id": "SR17",
+      "repeat": 3,
+      "status": "completed",
+      "skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 52.64,
+      "answer_characters": 2222,
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "fixture_hashes": {},
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "answer_sha256": "8a0542901fd78bf92ef83560a9822b16f296e1555ebd20382e795b80ede142e0",
+      "criteria": [
+        "相談の成立条件",
+        "比較と推奨"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": []
+    },
+    {
+      "id": "SR18",
+      "repeat": 1,
+      "status": "completed",
+      "skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 27.9,
+      "answer_characters": 921,
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "fixture_hashes": {},
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "answer_sha256": "8a92e215d15d5905de45306de24ce1661eecd9422ac39e1d03be466ae34eedc8",
+      "criteria": [
+        "因果推論",
+        "代替説明と観測"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": []
+    },
+    {
+      "id": "SR19",
+      "repeat": 1,
+      "status": "completed",
+      "skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 52.15,
+      "answer_characters": 2195,
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "fixture_hashes": {
+        "fixtures/advice/cooling.md": "3195579fe2cfb7f4e508672492284454d22be49519b1f4f78c079a6636e2f9ba"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "answer_sha256": "050fcc529c86b8e30c83d071120e24b29805981e1ba8ba3b1e1a9b9829e6b196",
+      "criteria": [
+        "比較軸",
+        "物語への使い方",
+        "機会費用"
+      ],
+      "scores": [
+        2,
+        2,
+        2
+      ],
+      "hard_violations": []
+    },
+    {
+      "id": "SR19",
+      "repeat": 2,
+      "status": "completed",
+      "skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 36.17,
+      "answer_characters": 1939,
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "fixture_hashes": {
+        "fixtures/advice/cooling.md": "3195579fe2cfb7f4e508672492284454d22be49519b1f4f78c079a6636e2f9ba"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "answer_sha256": "22b8fd8438eeb0eefcf5a2345f19bd062d831e23564b5e7aae5e2d56b00a4e98",
+      "criteria": [
+        "比較軸",
+        "物語への使い方",
+        "機会費用"
+      ],
+      "scores": [
+        2,
+        2,
+        2
+      ],
+      "hard_violations": []
+    },
+    {
+      "id": "SR19",
+      "repeat": 3,
+      "status": "completed",
+      "skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 39.35,
+      "answer_characters": 2278,
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "fixture_hashes": {
+        "fixtures/advice/cooling.md": "3195579fe2cfb7f4e508672492284454d22be49519b1f4f78c079a6636e2f9ba"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "answer_sha256": "40887ab8adb4504c5494de6807ca411b50d18cc7f1a13b91b67dc80554b13698",
+      "criteria": [
+        "比較軸",
+        "物語への使い方",
+        "機会費用"
+      ],
+      "scores": [
+        2,
+        2,
+        2
+      ],
+      "hard_violations": []
+    },
+    {
+      "id": "SR20",
+      "repeat": 1,
+      "status": "completed",
+      "skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 31.81,
+      "answer_characters": 1601,
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "fixture_hashes": {},
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "answer_sha256": "3e2e1b2c1d7e455153f8bf595a1a3d1eeb7fd94b94fe2afdaf374995ec32b96d",
+      "criteria": [
+        "独自前提の提案",
+        "科学との境界",
+        "作者の採用権"
+      ],
+      "scores": [
+        2,
+        2,
+        2
+      ],
+      "hard_violations": []
+    }
+  ],
+  "final_trigger_runs": [
+    {
+      "id": "TN01",
+      "expected_trigger": false,
+      "status": "completed",
+      "main_body_read_confirmed": false,
+      "main_body_output_confirmed": false,
+      "elapsed_seconds": 6.21
+    },
+    {
+      "id": "TN02",
+      "expected_trigger": false,
+      "status": "completed",
+      "main_body_read_confirmed": false,
+      "main_body_output_confirmed": false,
+      "elapsed_seconds": 13.95
+    },
+    {
+      "id": "TN03",
+      "expected_trigger": false,
+      "status": "completed",
+      "main_body_read_confirmed": false,
+      "main_body_output_confirmed": false,
+      "elapsed_seconds": 17.39
+    },
+    {
+      "id": "TN04",
+      "expected_trigger": false,
+      "status": "completed",
+      "main_body_read_confirmed": false,
+      "main_body_output_confirmed": false,
+      "elapsed_seconds": 11.46
+    },
+    {
+      "id": "TN05",
+      "expected_trigger": false,
+      "status": "completed",
+      "main_body_read_confirmed": false,
+      "main_body_output_confirmed": false,
+      "elapsed_seconds": 11.48
+    },
+    {
+      "id": "TN06",
+      "expected_trigger": false,
+      "status": "completed",
+      "main_body_read_confirmed": false,
+      "main_body_output_confirmed": false,
+      "elapsed_seconds": 10.88
+    },
+    {
+      "id": "TN07",
+      "expected_trigger": false,
+      "status": "completed",
+      "main_body_read_confirmed": false,
+      "main_body_output_confirmed": false,
+      "elapsed_seconds": 15.63
+    },
+    {
+      "id": "TN08",
+      "expected_trigger": false,
+      "status": "completed",
+      "main_body_read_confirmed": false,
+      "main_body_output_confirmed": false,
+      "elapsed_seconds": 31.28
+    },
+    {
+      "id": "TN09",
+      "expected_trigger": false,
+      "status": "completed",
+      "main_body_read_confirmed": false,
+      "main_body_output_confirmed": false,
+      "elapsed_seconds": 10.83
+    },
+    {
+      "id": "TN10",
+      "expected_trigger": false,
+      "status": "completed",
+      "main_body_read_confirmed": false,
+      "main_body_output_confirmed": false,
+      "elapsed_seconds": 9.98
+    },
+    {
+      "id": "TP01",
+      "expected_trigger": true,
+      "status": "completed",
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "elapsed_seconds": 16.02
+    },
+    {
+      "id": "TP02",
+      "expected_trigger": true,
+      "status": "completed",
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "elapsed_seconds": 17.87
+    },
+    {
+      "id": "TP03",
+      "expected_trigger": true,
+      "status": "completed",
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "elapsed_seconds": 114.25
+    },
+    {
+      "id": "TP04",
+      "expected_trigger": true,
+      "status": "completed",
+      "main_body_read_confirmed": false,
+      "main_body_output_confirmed": false,
+      "elapsed_seconds": 6.57
+    },
+    {
+      "id": "TP05",
+      "expected_trigger": true,
+      "status": "completed",
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "elapsed_seconds": 39.02
+    },
+    {
+      "id": "TP06",
+      "expected_trigger": true,
+      "status": "completed",
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "elapsed_seconds": 17.17
+    },
+    {
+      "id": "TP07",
+      "expected_trigger": true,
+      "status": "completed",
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "elapsed_seconds": 21.53
+    },
+    {
+      "id": "TP08",
+      "expected_trigger": true,
+      "status": "completed",
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "elapsed_seconds": 35.02
+    },
+    {
+      "id": "TP09",
+      "expected_trigger": true,
+      "status": "completed",
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "elapsed_seconds": 34.82
+    },
+    {
+      "id": "TP10",
+      "expected_trigger": true,
+      "status": "completed",
+      "main_body_read_confirmed": true,
+      "main_body_output_confirmed": true,
+      "elapsed_seconds": 34.05
+    }
+  ],
+  "final_control_runs": [
+    {
+      "id": "SR01",
+      "repeat": 1,
+      "status": "completed",
+      "matched_skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 26.16,
+      "answer_characters": 1075,
+      "answer_sha256": "2778559822058789ca128c2a52d78cbd00ca0c852d76ab4c291a3b009f5ddade",
+      "main_body_output_confirmed": false,
+      "local_skill_installed": false,
+      "fixture_hashes": {
+        "fixtures/mechanics/scene.md": "9b0a7a9f226a2903a5303693ff1d116e8ecf02c2f408a9208e5cfe2bd0f2876d"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "criteria": [
+        "式・数値・単位の照合",
+        "誤検出がない"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": [],
+      "note": "Both frozen content criteria achieved; no scientific false positive observed."
+    },
+    {
+      "id": "SR01",
+      "repeat": 2,
+      "status": "completed",
+      "matched_skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 26.4,
+      "answer_characters": 882,
+      "answer_sha256": "ec3312907d2cdc321eb9637545978752ba3ee0a300c596268138879d40946aac",
+      "main_body_output_confirmed": false,
+      "local_skill_installed": false,
+      "fixture_hashes": {
+        "fixtures/mechanics/scene.md": "9b0a7a9f226a2903a5303693ff1d116e8ecf02c2f408a9208e5cfe2bd0f2876d"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "criteria": [
+        "式・数値・単位の照合",
+        "誤検出がない"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": [],
+      "note": "Frozen content criteria achieved in the second independent run."
+    },
+    {
+      "id": "SR01",
+      "repeat": 3,
+      "status": "completed",
+      "matched_skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 18.14,
+      "answer_characters": 645,
+      "answer_sha256": "e89f4516ed915de7e1f4b6dc589e55402666956fd0638c45f786b33bd0c64fd2",
+      "main_body_output_confirmed": false,
+      "local_skill_installed": false,
+      "fixture_hashes": {
+        "fixtures/mechanics/scene.md": "9b0a7a9f226a2903a5303693ff1d116e8ecf02c2f408a9208e5cfe2bd0f2876d"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "criteria": [
+        "式・数値・単位の照合",
+        "誤検出がない"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": [],
+      "note": "Frozen content criteria achieved in the third independent run."
+    },
+    {
+      "id": "SR02",
+      "repeat": 1,
+      "status": "completed",
+      "matched_skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 22.72,
+      "answer_characters": 987,
+      "answer_sha256": "eedf1f883e949162a705f1644ce5e40c01dc6737919fdd164a184fcd795b13d3",
+      "main_body_output_confirmed": false,
+      "local_skill_installed": false,
+      "fixture_hashes": {},
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "criteria": [
+        "適用条件と量の区別",
+        "式の修正"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": [],
+      "note": "Both frozen content criteria achieved; no scientific false positive observed."
+    },
+    {
+      "id": "SR03",
+      "repeat": 1,
+      "status": "completed",
+      "matched_skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 22.23,
+      "answer_characters": 1457,
+      "answer_sha256": "b9ef6f757a4fd72b361a4f4139a92680c5becfc06c8e623bd00a664f4c356a2b",
+      "main_body_output_confirmed": false,
+      "local_skill_installed": false,
+      "fixture_hashes": {},
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "criteria": [
+        "係数と次元を別に検査",
+        "物理モデルの確認"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": [],
+      "note": "Both frozen content criteria achieved; no scientific false positive observed."
+    },
+    {
+      "id": "SR03",
+      "repeat": 2,
+      "status": "completed",
+      "matched_skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 14.63,
+      "answer_characters": 997,
+      "answer_sha256": "f6f328eee3d8d520a575fe33f873cb9d4f11580e419cf293a44a1ba4346b094d",
+      "main_body_output_confirmed": false,
+      "local_skill_installed": false,
+      "fixture_hashes": {},
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "criteria": [
+        "係数と次元を別に検査",
+        "物理モデルの確認"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": [],
+      "note": "Frozen content criteria achieved in the second independent run."
+    },
+    {
+      "id": "SR03",
+      "repeat": 3,
+      "status": "completed",
+      "matched_skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 18.67,
+      "answer_characters": 761,
+      "answer_sha256": "2907262d1618ab96999edb80fa5f964fac8711348d25249bae105778f8dfa992",
+      "main_body_output_confirmed": false,
+      "local_skill_installed": false,
+      "fixture_hashes": {},
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "criteria": [
+        "係数と次元を別に検査",
+        "物理モデルの確認"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": [],
+      "note": "Frozen content criteria achieved in the third independent run."
+    },
+    {
+      "id": "SR04",
+      "repeat": 1,
+      "status": "completed",
+      "matched_skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 20.29,
+      "answer_characters": 1257,
+      "answer_sha256": "1b1e7c21a54d40abce12c2dea387cc35e2e7f0856c13e5cf76af52cf62d77c55",
+      "main_body_output_confirmed": false,
+      "local_skill_installed": false,
+      "fixture_hashes": {
+        "fixtures/fantasy/world.md": "9543ba52c0f76db5fad8ffa68a82dc6985354e36f9d1206a279e9098c4e02e28",
+        "fixtures/fantasy/scene.md": "65ecfcf0a3f7523295f9ceab3a05ef8a3e966ed0e8c9e9a8736a96e2f36e405a"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "criteria": [
+        "工程境界",
+        "確定条件との矛盾位置"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": [],
+      "note": "Frozen criteria achieved. Suggestions and numeric illustrations were marked as proposals or assumptions."
+    },
+    {
+      "id": "SR04",
+      "repeat": 2,
+      "status": "completed",
+      "matched_skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 17.87,
+      "answer_characters": 1201,
+      "answer_sha256": "d13939f9e054ea82031575c245fdc29ddf8983596b203c7a0d743c603b3f41ee",
+      "main_body_output_confirmed": false,
+      "local_skill_installed": false,
+      "fixture_hashes": {
+        "fixtures/fantasy/world.md": "9543ba52c0f76db5fad8ffa68a82dc6985354e36f9d1206a279e9098c4e02e28",
+        "fixtures/fantasy/scene.md": "65ecfcf0a3f7523295f9ceab3a05ef8a3e966ed0e8c9e9a8736a96e2f36e405a"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "criteria": [
+        "工程境界",
+        "確定条件との矛盾位置"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": [],
+      "note": "Frozen content criteria achieved in the second independent run."
+    },
+    {
+      "id": "SR04",
+      "repeat": 3,
+      "status": "completed",
+      "matched_skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 20.71,
+      "answer_characters": 1170,
+      "answer_sha256": "50f333540f9cb4a9ce820be472486e63e9b2739d596188a7dcdb1b6ffb731fb3",
+      "main_body_output_confirmed": false,
+      "local_skill_installed": false,
+      "fixture_hashes": {
+        "fixtures/fantasy/world.md": "9543ba52c0f76db5fad8ffa68a82dc6985354e36f9d1206a279e9098c4e02e28",
+        "fixtures/fantasy/scene.md": "65ecfcf0a3f7523295f9ceab3a05ef8a3e966ed0e8c9e9a8736a96e2f36e405a"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "criteria": [
+        "工程境界",
+        "確定条件との矛盾位置"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": [],
+      "note": "Frozen criteria achieved in the third independent run; original failed attempt was retained separately."
+    },
+    {
+      "id": "SR05",
+      "repeat": 1,
+      "status": "completed",
+      "matched_skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 14.54,
+      "answer_characters": 883,
+      "answer_sha256": "294a22978409089da4abe803602915da43521df882debe9504912d7aeb99944b",
+      "main_body_output_confirmed": false,
+      "local_skill_installed": false,
+      "fixture_hashes": {
+        "fixtures/fantasy/world.md": "9543ba52c0f76db5fad8ffa68a82dc6985354e36f9d1206a279e9098c4e02e28"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "criteria": [
+        "資料の格",
+        "独自則の範囲"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": [],
+      "note": "Frozen criteria achieved. Suggestions and numeric illustrations were marked as proposals or assumptions."
+    },
+    {
+      "id": "SR06",
+      "repeat": 1,
+      "status": "completed",
+      "matched_skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 26.44,
+      "answer_characters": 956,
+      "answer_sha256": "549c4dbd24659d466cfb9f1b2cee5b587c5d4364502c9c89ce4045cc73714fbb",
+      "main_body_output_confirmed": false,
+      "local_skill_installed": false,
+      "fixture_hashes": {},
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "criteria": [
+        "必要入力",
+        "根拠なしの数値を作らない"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": [],
+      "note": "Frozen criteria achieved. Suggestions and numeric illustrations were marked as proposals or assumptions."
+    },
+    {
+      "id": "SR07",
+      "repeat": 1,
+      "status": "completed",
+      "matched_skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 18.36,
+      "answer_characters": 1076,
+      "answer_sha256": "5a8deae098cceaf8cc4a0a6071f939852ce16078e0d2cb56652bcf49075bf60f",
+      "main_body_output_confirmed": false,
+      "local_skill_installed": false,
+      "fixture_hashes": {
+        "fixtures/timeline/scene.md": "a133f7e38029b63bf7803fb31783f9874363f36b5dcab76e6f4739ee1ed5c976",
+        "fixtures/timeline/profile.md": "caa40be52025a625e0a9240f8d8b8d93cccfb9d76a2a420d3d81f241dae6bf49"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "criteria": [
+        "時点",
+        "独立した軸"
+      ],
+      "scores": [
+        2,
+        1
+      ],
+      "hard_violations": [],
+      "note": "Training chronology was correctly identified as contradictory; science and execution capability were not fully assessed as separate axes."
+    },
+    {
+      "id": "SR08",
+      "repeat": 1,
+      "status": "completed",
+      "matched_skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 19.6,
+      "answer_characters": 794,
+      "answer_sha256": "fba02754d0a846ce5e19594e6903e673008320589618453642e1a78fba24a058",
+      "main_body_output_confirmed": false,
+      "local_skill_installed": false,
+      "fixture_hashes": {
+        "fixtures/mystery/README.md": "ab5eb70bca85c8f70af04a538bb4c55b6705f12911f743b1d9fa683d4ec7d65c",
+        "fixtures/mystery/scene.md": "b688e39f73f6f0654a4f7ec1f99a0bc39dbee27cf91bae61dd8ae941bd9048f3",
+        "fixtures/mystery/workshop.md": "8b4b43b67ba6366e3eb00ade2320c0b4783270259faa298146ce8d0f4a6ab782"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "criteria": [
+        "同義語検索",
+        "未発見と不存在の区別"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": [],
+      "note": "Frozen content criteria achieved; scope and uncertainty preserved."
+    },
+    {
+      "id": "SR08",
+      "repeat": 2,
+      "status": "completed",
+      "matched_skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 21.8,
+      "answer_characters": 1139,
+      "answer_sha256": "fb33f8fc6eaf6db1e849f7f7cbb0bba7039e85faa7acbcea01c03adb0fe9da84",
+      "main_body_output_confirmed": false,
+      "local_skill_installed": false,
+      "fixture_hashes": {
+        "fixtures/mystery/README.md": "ab5eb70bca85c8f70af04a538bb4c55b6705f12911f743b1d9fa683d4ec7d65c",
+        "fixtures/mystery/scene.md": "b688e39f73f6f0654a4f7ec1f99a0bc39dbee27cf91bae61dd8ae941bd9048f3",
+        "fixtures/mystery/workshop.md": "8b4b43b67ba6366e3eb00ade2320c0b4783270259faa298146ce8d0f4a6ab782"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "criteria": [
+        "同義語検索",
+        "未発見と不存在の区別"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": [],
+      "note": "Frozen content criteria achieved in the second independent run."
+    },
+    {
+      "id": "SR08",
+      "repeat": 3,
+      "status": "completed",
+      "matched_skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 32.62,
+      "answer_characters": 1467,
+      "answer_sha256": "b6bd77c4b731948c8ee6519b66694fd096b3525635f6bdfde46c15b2b2d0b823",
+      "main_body_output_confirmed": false,
+      "local_skill_installed": false,
+      "fixture_hashes": {
+        "fixtures/mystery/README.md": "ab5eb70bca85c8f70af04a538bb4c55b6705f12911f743b1d9fa683d4ec7d65c",
+        "fixtures/mystery/scene.md": "b688e39f73f6f0654a4f7ec1f99a0bc39dbee27cf91bae61dd8ae941bd9048f3",
+        "fixtures/mystery/workshop.md": "8b4b43b67ba6366e3eb00ade2320c0b4783270259faa298146ce8d0f4a6ab782"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "criteria": [
+        "同義語検索",
+        "未発見と不存在の区別"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": [],
+      "note": "Frozen criteria achieved in the third independent run; original failed attempt was retained separately."
+    },
+    {
+      "id": "SR09",
+      "repeat": 1,
+      "status": "completed",
+      "matched_skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 19.44,
+      "answer_characters": 1141,
+      "answer_sha256": "c8eaf90f6b849f0361c7ceb2b2cdf54b917bdf4b91cc3a5a26aa7c52b99154fe",
+      "main_body_output_confirmed": false,
+      "local_skill_installed": false,
+      "fixture_hashes": {
+        "fixtures/dialogue/scene.md": "acef508b92f0c89be8914d98daf5b8fc04adfd4cc1447b2e77419123665103de"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "criteria": [
+        "話者",
+        "主張分解"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": [],
+      "note": "Frozen content criteria achieved; scope and uncertainty preserved."
+    },
+    {
+      "id": "SR10",
+      "repeat": 1,
+      "status": "completed",
+      "matched_skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 17.37,
+      "answer_characters": 886,
+      "answer_sha256": "73dfc0563332658f997abd1f95dc79a81dc24882c197f4f0c9b3622585db3e7d",
+      "main_body_output_confirmed": false,
+      "local_skill_installed": false,
+      "fixture_hashes": {
+        "fixtures/ai/scene.md": "917fb316e4db66b79422aeda035e48c48fb05b5dc1b24b1ee03565af0e400d3b"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "criteria": [
+        "同定可能性",
+        "根拠・仮定の区別"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": [],
+      "note": "Frozen content criteria achieved; scope and uncertainty preserved."
+    },
+    {
+      "id": "SR11",
+      "repeat": 1,
+      "status": "completed",
+      "matched_skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 17.32,
+      "answer_characters": 839,
+      "answer_sha256": "40396549379f638d4aab1b10df262b5504de2050cc4d4f0eb725eff6d76d45b7",
+      "main_body_output_confirmed": false,
+      "local_skill_installed": false,
+      "fixture_hashes": {
+        "fixtures/sources/access-state.json": "64f43e56300d4a9f32b67a8d28e8f4e0b75c7682880b43d3f6eafc14c52b3e2f"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "criteria": [
+        "閲覧状態",
+        "捏造なし"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": [],
+      "note": "Frozen content criteria achieved; scope and uncertainty preserved."
+    },
+    {
+      "id": "SR11",
+      "repeat": 2,
+      "status": "completed",
+      "matched_skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 19.8,
+      "answer_characters": 955,
+      "answer_sha256": "f257fba09d431763f3ed3f8d666c32d0b5c35d891bdffc6227634233db34e7a4",
+      "main_body_output_confirmed": false,
+      "local_skill_installed": false,
+      "fixture_hashes": {
+        "fixtures/sources/access-state.json": "64f43e56300d4a9f32b67a8d28e8f4e0b75c7682880b43d3f6eafc14c52b3e2f"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "criteria": [
+        "閲覧状態",
+        "捏造なし"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": [],
+      "note": "Frozen content criteria achieved in the second independent run."
+    },
+    {
+      "id": "SR11",
+      "repeat": 3,
+      "status": "completed",
+      "matched_skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 27.86,
+      "answer_characters": 934,
+      "answer_sha256": "bc63b549b960f8c152d010c497fbd615d51486852dd4660f86e13564f353c9f9",
+      "main_body_output_confirmed": false,
+      "local_skill_installed": false,
+      "fixture_hashes": {
+        "fixtures/sources/access-state.json": "64f43e56300d4a9f32b67a8d28e8f4e0b75c7682880b43d3f6eafc14c52b3e2f"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "criteria": [
+        "閲覧状態",
+        "捏造なし"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": [],
+      "note": "Frozen criteria achieved in the third independent run; original failed attempt was retained separately."
+    },
+    {
+      "id": "SR12",
+      "repeat": 1,
+      "status": "completed",
+      "matched_skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 23.02,
+      "answer_characters": 836,
+      "answer_sha256": "60fa03d5d10927346e4f076a29d060e9c3d8e95de84c691572263adc70f9e66a",
+      "main_body_output_confirmed": false,
+      "local_skill_installed": false,
+      "fixture_hashes": {
+        "fixtures/conflict/rule-a.md": "b542060fc8784a654bb25fb042347d982656e7c41b204de464731c3700ff12d4",
+        "fixtures/conflict/rule-b.md": "1f74f07838c76e45504cff624cde6031178bd27a6a6cda53ca8cf57f030b5867",
+        "fixtures/conflict/memo.md": "7134cd372218a2cc735cdd18e7b50bc536a747b6d467de958d9bbaa69e3fee65"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "criteria": [
+        "衝突追跡",
+        "資料の格"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": [],
+      "note": "Frozen content criteria achieved; scope and uncertainty preserved."
+    },
+    {
+      "id": "SR13",
+      "repeat": 1,
+      "status": "completed",
+      "matched_skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 9.24,
+      "answer_characters": 347,
+      "answer_sha256": "e1fbbffb8bd732c112c43bac003d92ee06c2c7c7327d377ef0222eb84fd4a4e0",
+      "main_body_output_confirmed": false,
+      "local_skill_installed": false,
+      "fixture_hashes": {},
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "criteria": [
+        "対象外の軸",
+        "数値換算"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": [],
+      "note": "Frozen content criteria achieved; scope and uncertainty preserved."
+    },
+    {
+      "id": "SR14",
+      "repeat": 1,
+      "status": "completed",
+      "matched_skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 24.66,
+      "answer_characters": 812,
+      "answer_sha256": "538d455d0a30a91ffe8e9f727b8206f0eb06b15dcb5d46ddced22fab1142d910",
+      "main_body_output_confirmed": false,
+      "local_skill_installed": false,
+      "fixture_hashes": {
+        "fixtures/scope/scene.md": "0a5db757e795fe7b25f40840eb96ad913a19ee41d94ca80eaa4f91871e1bd588"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "criteria": [
+        "範囲",
+        "出力の比例性"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": [],
+      "note": "Frozen content criteria achieved; scope and uncertainty preserved."
+    },
+    {
+      "id": "SR15",
+      "repeat": 1,
+      "status": "completed",
+      "matched_skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 36.84,
+      "answer_characters": 910,
+      "answer_sha256": "b9424251c6acd96bf0151f0d17a4c269d3ca1339c556f57938405a233f5a7adf",
+      "main_body_output_confirmed": false,
+      "local_skill_installed": false,
+      "fixture_hashes": {
+        "fixtures/mechanics/scene.md": "9b0a7a9f226a2903a5303693ff1d116e8ecf02c2f408a9208e5cfe2bd0f2876d"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [
+        "reviews/mechanics/report.md",
+        "reviews/mechanics/calculations.md"
+      ],
+      "criteria": [
+        "保存成果物の再読",
+        "本文ハッシュ",
+        "計算再実行"
+      ],
+      "scores": [
+        2,
+        0,
+        0
+      ],
+      "hard_violations": [],
+      "note": "Saved report and hand calculation were reread. No model-side before/after SHA-256 or executable calculation was saved; evaluator verified fixture preservation independently."
+    },
+    {
+      "id": "SR15",
+      "repeat": 2,
+      "status": "completed",
+      "matched_skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 40.57,
+      "answer_characters": 376,
+      "answer_sha256": "5a9e20543bb3ae36966f5bed68bff5ecd3d542d386858e92e8932954e99bb7c5",
+      "main_body_output_confirmed": false,
+      "local_skill_installed": false,
+      "fixture_hashes": {
+        "fixtures/mechanics/scene.md": "9b0a7a9f226a2903a5303693ff1d116e8ecf02c2f408a9208e5cfe2bd0f2876d"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [
+        "reviews/mechanics/report.md",
+        "reviews/mechanics/calculation.md"
+      ],
+      "criteria": [
+        "保存成果物の再読",
+        "本文ハッシュ",
+        "計算再実行"
+      ],
+      "scores": [
+        2,
+        0,
+        0
+      ],
+      "hard_violations": [],
+      "note": "Both saved Markdown files were reread. No model-side before/after SHA-256 or executable calculation was saved; evaluator fixture hashes match."
+    },
+    {
+      "id": "SR15",
+      "repeat": 3,
+      "status": "completed",
+      "matched_skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 37.15,
+      "answer_characters": 371,
+      "answer_sha256": "1a9c06cd5359442a299ca72bdaa5e044e367ffd53e6b948bbb1ae906a8c4354a",
+      "main_body_output_confirmed": false,
+      "local_skill_installed": false,
+      "fixture_hashes": {
+        "fixtures/mechanics/scene.md": "9b0a7a9f226a2903a5303693ff1d116e8ecf02c2f408a9208e5cfe2bd0f2876d"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [
+        "reviews/mechanics/report.md",
+        "reviews/mechanics/calculation.md"
+      ],
+      "criteria": [
+        "保存成果物の再読",
+        "本文ハッシュ",
+        "計算再実行"
+      ],
+      "scores": [
+        2,
+        0,
+        0
+      ],
+      "hard_violations": [],
+      "note": "Saved report and hand calculation were reread; no model-side SHA-256 comparison or executable calculation was saved. Evaluator verified fixture preservation."
+    },
+    {
+      "id": "SR16",
+      "repeat": 1,
+      "status": "completed",
+      "matched_skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 41.87,
+      "answer_characters": 2053,
+      "answer_sha256": "41c6b29df18f20bcc5b79c7afc666db439a0215e8a730576fde8c6ae6a48085d",
+      "main_body_output_confirmed": false,
+      "local_skill_installed": false,
+      "fixture_hashes": {},
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "criteria": [
+        "量の区別",
+        "危険な換算なし"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": [],
+      "note": "Conditional quantities or energy-harvesting requirements were distinguished; illustrative assumptions were not treated as observed performance.",
+      "source_note": "The alpha weighting example is substantively valid for the stated equivalent-dose model, but the linked coefficient table is a 2005 consultation draft and its status was not disclosed."
+    },
+    {
+      "id": "SR17",
+      "repeat": 1,
+      "status": "completed",
+      "matched_skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 45.09,
+      "answer_characters": 1563,
+      "answer_sha256": "689ed4c05a119ee8543078f7f6466b234a338a03c264f88f0ab69b16abf8dad0",
+      "main_body_output_confirmed": false,
+      "local_skill_installed": false,
+      "fixture_hashes": {},
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "criteria": [
+        "相談の成立条件",
+        "比較と推奨"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": [],
+      "note": "Conditional quantities or energy-harvesting requirements were distinguished; illustrative assumptions were not treated as observed performance."
+    },
+    {
+      "id": "SR17",
+      "repeat": 2,
+      "status": "completed",
+      "matched_skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 35.64,
+      "answer_characters": 1290,
+      "answer_sha256": "e87cfae8f6e1f65c9d9be5c7ab36cf3d38ebb3020bed66274d767f2b7c071d69",
+      "main_body_output_confirmed": false,
+      "local_skill_installed": false,
+      "fixture_hashes": {},
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "criteria": [
+        "相談の成立条件",
+        "比較と推奨"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": [],
+      "note": "Requirements, alternative mechanisms and conditional recommendation were supplied. Example Carnot limit is about 16% for the stated 80/25 Celsius assumptions."
+    },
+    {
+      "id": "SR17",
+      "repeat": 3,
+      "status": "completed",
+      "matched_skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 33.01,
+      "answer_characters": 2378,
+      "answer_sha256": "1a53725b0a76dcfc9c9851831cd0a8d3e23c4fe2c7e9c0fbeed3cdd99c2b08f0",
+      "main_body_output_confirmed": false,
+      "local_skill_installed": false,
+      "fixture_hashes": {},
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "criteria": [
+        "相談の成立条件",
+        "比較と推奨"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": [],
+      "note": "Required inputs and direct-heat, thermoelectric, and heat-engine alternatives were distinguished without claiming an observed output.",
+      "source_note": "The DOE Amrize demonstration URL was not independently retrievable (web access failure; curl exit 35). The ARPA-E DE-FOA-0001607 background did support the heat-engine/solid-state distinction; the demonstration was not verified."
+    },
+    {
+      "id": "SR18",
+      "repeat": 1,
+      "status": "completed",
+      "matched_skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 19.14,
+      "answer_characters": 879,
+      "answer_sha256": "48c8a6be5238ee5acf5c19b06f402f32a07069610e4e6f5e0651e4030badbe4f",
+      "main_body_output_confirmed": false,
+      "local_skill_installed": false,
+      "fixture_hashes": {},
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "criteria": [
+        "因果推論",
+        "代替説明と観測"
+      ],
+      "scores": [
+        2,
+        2
+      ],
+      "hard_violations": [],
+      "note": "Causal ambiguity, alternative mechanisms, and discriminating observations were explained; missing scenario details were requested."
+    },
+    {
+      "id": "SR19",
+      "repeat": 1,
+      "status": "completed",
+      "matched_skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 34.9,
+      "answer_characters": 2062,
+      "answer_sha256": "050f0add75d162b29c4179ad79a55d79e757a6f38e637e534b5126d9757be465",
+      "main_body_output_confirmed": false,
+      "local_skill_installed": false,
+      "fixture_hashes": {
+        "fixtures/advice/cooling.md": "3195579fe2cfb7f4e508672492284454d22be49519b1f4f78c079a6636e2f9ba"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "criteria": [
+        "比較軸",
+        "物語への使い方",
+        "機会費用"
+      ],
+      "scores": [
+        2,
+        2,
+        2
+      ],
+      "hard_violations": [],
+      "note": "Mechanisms and constraints were compared as conditional proposals; scientific feasibility was not claimed for the fictional premise."
+    },
+    {
+      "id": "SR19",
+      "repeat": 2,
+      "status": "completed",
+      "matched_skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 41.04,
+      "answer_characters": 2159,
+      "answer_sha256": "a4074fadf6f5275586a47bed776a9157dd409b3d0d9f2d9577b6047f3c62c45c",
+      "main_body_output_confirmed": false,
+      "local_skill_installed": false,
+      "fixture_hashes": {
+        "fixtures/advice/cooling.md": "3195579fe2cfb7f4e508672492284454d22be49519b1f4f78c079a6636e2f9ba"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "criteria": [
+        "比較軸",
+        "物語への使い方",
+        "機会費用"
+      ],
+      "scores": [
+        2,
+        2,
+        2
+      ],
+      "hard_violations": [],
+      "note": "Three mechanisms, story usage and combined-system mass/complexity tradeoffs were explained."
+    },
+    {
+      "id": "SR19",
+      "repeat": 3,
+      "status": "completed",
+      "matched_skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 32.8,
+      "answer_characters": 2178,
+      "answer_sha256": "fb694241db16233ca63b40219b2027ed2def23d87e590bbeb5264d3762f4969a",
+      "main_body_output_confirmed": false,
+      "local_skill_installed": false,
+      "fixture_hashes": {
+        "fixtures/advice/cooling.md": "3195579fe2cfb7f4e508672492284454d22be49519b1f4f78c079a6636e2f9ba"
+      },
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "criteria": [
+        "比較軸",
+        "物語への使い方",
+        "機会費用"
+      ],
+      "scores": [
+        2,
+        2,
+        2
+      ],
+      "hard_violations": [],
+      "note": "Storage, radiation, and expendable cooling were compared with conditional story recommendations and capacity/consumable tradeoffs."
+    },
+    {
+      "id": "SR20",
+      "repeat": 1,
+      "status": "completed",
+      "matched_skill_sha256": "1d1785ece8b7e39e90f9cde018d4c4700547dade68462e12c765882bb24dc984",
+      "elapsed_seconds": 42.87,
+      "answer_characters": 1692,
+      "answer_sha256": "2b21607825b745d60da185e76d9878bc984a6bef886111bdf1c8bee721e98546",
+      "main_body_output_confirmed": false,
+      "local_skill_installed": false,
+      "fixture_hashes": {},
+      "changed_fixtures": [],
+      "generated_artifacts": [],
+      "criteria": [
+        "独自前提の提案",
+        "科学との境界",
+        "作者の採用権"
+      ],
+      "scores": [
+        2,
+        2,
+        2
+      ],
+      "hard_violations": [],
+      "note": "Mechanisms and constraints were compared as conditional proposals; scientific feasibility was not claimed for the fictional premise."
+    }
+  ],
+  "paired_comparison": {
+    "planned_review_runs_per_condition": 36,
+    "same_base_prompts": true,
+    "same_fixture_hashes": true,
+    "same_requested_model": true,
+    "same_observed_model": null,
+    "global_duplicate_skill_found": false,
+    "local_science_review_installed_in_controls": false,
+    "controls_without_science_review_body_output": 36,
+    "interpretation": "Procedural differences and rubric observations in these cases are reported; this is not a general scientific accuracy estimate or a fully controlled experiment."
+  },
+  "artifact_audit": {
+    "completed_answers": 92,
+    "answers_matching_final_events": 92,
+    "fixture_changes": 0,
+    "unrequested_artifact_runs": 0,
+    "local_markdown_links_checked": 150,
+    "missing_files_or_out_of_range_lines": 0,
+    "link_check_limit": "Checks local file existence and stated line range, not scientific truth. Content correspondence was manually reviewed.",
+    "runs": [
+      {
+        "id": "SR01",
+        "repeat": 1,
+        "variant": "with",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR01",
+        "repeat": 2,
+        "variant": "with",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR01",
+        "repeat": 3,
+        "variant": "with",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR02",
+        "repeat": 1,
+        "variant": "with",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR03",
+        "repeat": 1,
+        "variant": "with",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR03",
+        "repeat": 2,
+        "variant": "with",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR03",
+        "repeat": 3,
+        "variant": "with",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR04",
+        "repeat": 1,
+        "variant": "with",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR04",
+        "repeat": 2,
+        "variant": "with",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR04",
+        "repeat": 3,
+        "variant": "with",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR05",
+        "repeat": 1,
+        "variant": "with",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR06",
+        "repeat": 1,
+        "variant": "with",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR07",
+        "repeat": 1,
+        "variant": "with",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR08",
+        "repeat": 1,
+        "variant": "with",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR08",
+        "repeat": 2,
+        "variant": "with",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR08",
+        "repeat": 3,
+        "variant": "with",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR09",
+        "repeat": 1,
+        "variant": "with",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR10",
+        "repeat": 1,
+        "variant": "with",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR11",
+        "repeat": 1,
+        "variant": "with",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR11",
+        "repeat": 2,
+        "variant": "with",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR11",
+        "repeat": 3,
+        "variant": "with",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR12",
+        "repeat": 1,
+        "variant": "with",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR13",
+        "repeat": 1,
+        "variant": "with",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR14",
+        "repeat": 1,
+        "variant": "with",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR15",
+        "repeat": 1,
+        "variant": "with",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR15",
+        "repeat": 2,
+        "variant": "with",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR15",
+        "repeat": 3,
+        "variant": "with",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR16",
+        "repeat": 1,
+        "variant": "with",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR17",
+        "repeat": 1,
+        "variant": "with",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR17",
+        "repeat": 2,
+        "variant": "with",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR17",
+        "repeat": 3,
+        "variant": "with",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR18",
+        "repeat": 1,
+        "variant": "with",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR19",
+        "repeat": 1,
+        "variant": "with",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR19",
+        "repeat": 2,
+        "variant": "with",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR19",
+        "repeat": 3,
+        "variant": "with",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR20",
+        "repeat": 1,
+        "variant": "with",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "TN01",
+        "repeat": 1,
+        "variant": "natural",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "TN02",
+        "repeat": 1,
+        "variant": "natural",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "TN03",
+        "repeat": 1,
+        "variant": "natural",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "TN04",
+        "repeat": 1,
+        "variant": "natural",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "TN05",
+        "repeat": 1,
+        "variant": "natural",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "TN06",
+        "repeat": 1,
+        "variant": "natural",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "TN07",
+        "repeat": 1,
+        "variant": "natural",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "TN08",
+        "repeat": 1,
+        "variant": "natural",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "TN09",
+        "repeat": 1,
+        "variant": "natural",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "TN10",
+        "repeat": 1,
+        "variant": "natural",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "TP01",
+        "repeat": 1,
+        "variant": "natural",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "TP02",
+        "repeat": 1,
+        "variant": "natural",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "TP03",
+        "repeat": 1,
+        "variant": "natural",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "TP04",
+        "repeat": 1,
+        "variant": "natural",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "TP05",
+        "repeat": 1,
+        "variant": "natural",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "TP06",
+        "repeat": 1,
+        "variant": "natural",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "TP07",
+        "repeat": 1,
+        "variant": "natural",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "TP08",
+        "repeat": 1,
+        "variant": "natural",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "TP09",
+        "repeat": 1,
+        "variant": "natural",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "TP10",
+        "repeat": 1,
+        "variant": "natural",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR01",
+        "repeat": 1,
+        "variant": "without",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR01",
+        "repeat": 2,
+        "variant": "without",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR01",
+        "repeat": 3,
+        "variant": "without",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR02",
+        "repeat": 1,
+        "variant": "without",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR03",
+        "repeat": 1,
+        "variant": "without",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR03",
+        "repeat": 2,
+        "variant": "without",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR03",
+        "repeat": 3,
+        "variant": "without",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR04",
+        "repeat": 1,
+        "variant": "without",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR04",
+        "repeat": 2,
+        "variant": "without",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR04",
+        "repeat": 3,
+        "variant": "without",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR05",
+        "repeat": 1,
+        "variant": "without",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR06",
+        "repeat": 1,
+        "variant": "without",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR07",
+        "repeat": 1,
+        "variant": "without",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR08",
+        "repeat": 1,
+        "variant": "without",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR08",
+        "repeat": 2,
+        "variant": "without",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR08",
+        "repeat": 3,
+        "variant": "without",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR09",
+        "repeat": 1,
+        "variant": "without",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR10",
+        "repeat": 1,
+        "variant": "without",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR11",
+        "repeat": 1,
+        "variant": "without",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR11",
+        "repeat": 2,
+        "variant": "without",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR11",
+        "repeat": 3,
+        "variant": "without",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR12",
+        "repeat": 1,
+        "variant": "without",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR13",
+        "repeat": 1,
+        "variant": "without",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR14",
+        "repeat": 1,
+        "variant": "without",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR15",
+        "repeat": 1,
+        "variant": "without",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR15",
+        "repeat": 2,
+        "variant": "without",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR15",
+        "repeat": 3,
+        "variant": "without",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR16",
+        "repeat": 1,
+        "variant": "without",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR17",
+        "repeat": 1,
+        "variant": "without",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR17",
+        "repeat": 2,
+        "variant": "without",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR17",
+        "repeat": 3,
+        "variant": "without",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR18",
+        "repeat": 1,
+        "variant": "without",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR19",
+        "repeat": 1,
+        "variant": "without",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR19",
+        "repeat": 2,
+        "variant": "without",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR19",
+        "repeat": 3,
+        "variant": "without",
+        "answer_matches_final_event": true
+      },
+      {
+        "id": "SR20",
+        "repeat": 1,
+        "variant": "without",
+        "answer_matches_final_event": true
+      }
+    ]
+  },
+  "limitations": [
+    "Scientific judgments were graded by the implementation agent; no actual scholar reviewed them.",
+    "The observed Codex model name is not exposed in the CLI event log; only the requested name is recorded.",
+    "Historical skill/no-skill comparisons use older revisions; final paired observations are recorded separately and do not establish general scientific accuracy improvement.",
+    "Small repeated synthetic cases do not establish accuracy on other works or universal freedom from hallucination.",
+    "Source access limits are documented; every cited PDF was not independently read in full."
+  ],
+  "final_summary": {
+    "review_runs": 36,
+    "review_cases": 20,
+    "representative_cases": 8,
+    "repetitions_per_representative": 3,
+    "control_review_runs": 36,
+    "paired_review_runs": 72,
+    "total_completed_runs_including_triggers": 92,
+    "hard_violations": 0,
+    "fixture_changes": 0,
+    "main_body_read_confirmed": 36,
+    "main_body_output_confirmed": 36,
+    "positive_trigger_matches": 9,
+    "positive_trigger_count": 10,
+    "negative_trigger_matches": 10,
+    "negative_trigger_count": 10
+  },
+  "saved_calculation_replays": [
+    {
+      "id": "SR15",
+      "repeat": 1,
+      "artifact_sha256": {
+        "calculate.py": "fbe1070619fd05bc0836168257851827c668e76208ccaa90e358f30fe0ddce83",
+        "inputs.json": "2d479e830e052a76b6e508fffa3681b212d43f3e5418fd5e87fa398ff7f6b8eb",
+        "report.md": "c4c2c7c07a5f19870f2391fd50b69d5e97eee2ab5858d277de991c17e3967ba8"
+      },
+      "command": [
+        "python3",
+        "calculate.py"
+      ],
+      "returncode": 0,
+      "stdout": "kinetic_energy_j=4000\nkinetic_energy_kj=4\nmomentum_magnitude_kg_m_per_s=800\n",
+      "artifacts_unchanged": true,
+      "expected_kinetic_energy_J": 4000,
+      "expected_momentum_magnitude_kg_m_per_s": 800,
+      "replayed_from_saved_model_artifacts": true,
+      "report_and_input_manually_read": true
+    },
+    {
+      "id": "SR15",
+      "repeat": 2,
+      "artifact_sha256": {
+        "calculate.py": "c6a10c438316aec5a3d8afeedfe939de01a31853f4cbbd31b387d26928369cae",
+        "inputs.json": "9e78802abc3aabb651d76fe0569605045761dd8b0f940f1b0505cf3c6f94d556",
+        "report.md": "6087f09130c6f30586e277cffa05e6372f14b16d47935784dd6f4b0f3ac0768f"
+      },
+      "command": [
+        "python3",
+        "calculate.py"
+      ],
+      "returncode": 0,
+      "stdout": "kinetic_energy: 4000 J = 4 kJ\nmomentum_magnitude: 800 kg m/s\nenergy_matches_report: True\nmomentum_matches_report: True\n",
+      "artifacts_unchanged": true,
+      "expected_kinetic_energy_J": 4000,
+      "expected_momentum_magnitude_kg_m_per_s": 800,
+      "replayed_from_saved_model_artifacts": true,
+      "report_and_input_manually_read": true
+    },
+    {
+      "id": "SR15",
+      "repeat": 3,
+      "artifact_sha256": {
+        "calculate.py": "6f0e922fe9085df73e14352d9e79f78bc71b24574836d531329b03f0d1a2ea09",
+        "inputs.json": "38f9388811999c7b472db1f6f4dd73b063b792109d0ef898fea8bab23a801083",
+        "report.md": "389890e36ad671f5100d5891834903de1901aa4a64ac43fe416c8867feceffaa"
+      },
+      "command": [
+        "python3",
+        "calculate.py"
+      ],
+      "returncode": 0,
+      "stdout": "kinetic_energy_J=4000\nkinetic_energy_kJ=4\nmomentum_magnitude_kg_m_per_s=800\nreported_energy_matches=True\nreported_momentum_magnitude_matches=True\n",
+      "artifacts_unchanged": true,
+      "expected_kinetic_energy_J": 4000,
+      "expected_momentum_magnitude_kg_m_per_s": 800,
+      "replayed_from_saved_model_artifacts": true,
+      "report_and_input_manually_read": true
+    }
+  ]
+}

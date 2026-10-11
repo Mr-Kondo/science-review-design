@@ -1,0 +1,317 @@
+{
+  "checked_on": "2026-10-11",
+  "cli_version": "0.155.1",
+  "model": "CLI default; actual model identity unconfirmed",
+  "reviewer": "implementation assistant; manual review of separate CLI sessions, not an independent human science expert",
+  "scoring_scale": "0=not met, 1=partially met, 2=met; content criteria, not complete procedural compliance",
+  "skill_sha256": "bce12af0c5d42f10d7cf197390978e4d33b67202951a9d81a9ee21a4eb3b9655",
+  "cases_sha256": "687083d1b6b6074d8f55a004a1291bfe0c9feb792e53a9a83f5ae854528821a2",
+  "representative_case_count": 8,
+  "repetitions_per_condition": 1,
+  "review_results": [
+    {
+      "id": "SR01",
+      "variant": "with",
+      "criteria_scores": {
+        "式・数値・単位の照合": 2,
+        "誤検出がない": 2
+      },
+      "observed_forbidden_behaviors": [],
+      "note": "4,000 J・800 kg m/sを支持し、モデルと基準系を限定。",
+      "skill_body_command_read_confirmed": true,
+      "advice_reference_command_read_confirmed": false,
+      "elapsed_seconds": 44.07,
+      "answer_characters": 1296,
+      "saved_report_characters": 0,
+      "log_directory": "model-runs/SR01-with"
+    },
+    {
+      "id": "SR01",
+      "variant": "without",
+      "criteria_scores": {
+        "式・数値・単位の照合": 2,
+        "誤検出がない": 2
+      },
+      "observed_forbidden_behaviors": [],
+      "note": "同じ数値を支持。",
+      "skill_body_command_read_confirmed": false,
+      "advice_reference_command_read_confirmed": false,
+      "elapsed_seconds": 28.19,
+      "answer_characters": 693,
+      "saved_report_characters": 0,
+      "log_directory": "model-runs/SR01-without"
+    },
+    {
+      "id": "SR03",
+      "variant": "with",
+      "criteria_scores": {
+        "係数と次元を別に検査": 2,
+        "物理モデルの確認": 2
+      },
+      "observed_forbidden_behaviors": [],
+      "note": "次元一致と係数1/2不足を区別し、非相対論的モデルを明記。",
+      "skill_body_command_read_confirmed": true,
+      "advice_reference_command_read_confirmed": false,
+      "elapsed_seconds": 42.15,
+      "answer_characters": 1452,
+      "saved_report_characters": 0,
+      "log_directory": "model-runs/SR03-with"
+    },
+    {
+      "id": "SR03",
+      "variant": "without",
+      "criteria_scores": {
+        "係数と次元を別に検査": 2,
+        "物理モデルの確認": 2
+      },
+      "observed_forbidden_behaviors": [],
+      "note": "同じ係数不足とモデルを指摘。",
+      "skill_body_command_read_confirmed": false,
+      "advice_reference_command_read_confirmed": false,
+      "elapsed_seconds": 35.54,
+      "answer_characters": 1243,
+      "saved_report_characters": 0,
+      "log_directory": "model-runs/SR03-without"
+    },
+    {
+      "id": "SR04",
+      "variant": "with",
+      "criteria_scores": {
+        "工程境界": 2,
+        "確定条件との矛盾位置": 2
+      },
+      "observed_forbidden_behaviors": [],
+      "note": "確定した供給と現実の加工を別Cにし、A/B/C列を分離。",
+      "skill_body_command_read_confirmed": true,
+      "advice_reference_command_read_confirmed": false,
+      "elapsed_seconds": 71.75,
+      "answer_characters": 2424,
+      "saved_report_characters": 0,
+      "log_directory": "model-runs/SR04-with"
+    },
+    {
+      "id": "SR04",
+      "variant": "without",
+      "criteria_scores": {
+        "工程境界": 2,
+        "確定条件との矛盾位置": 2
+      },
+      "observed_forbidden_behaviors": [],
+      "note": "工程と燃料・即時加工の問題は正しい。A/B/Cの独立列はない。",
+      "skill_body_command_read_confirmed": false,
+      "advice_reference_command_read_confirmed": false,
+      "elapsed_seconds": 45.23,
+      "answer_characters": 1111,
+      "saved_report_characters": 0,
+      "log_directory": "model-runs/SR04-without"
+    },
+    {
+      "id": "SR08",
+      "variant": "with",
+      "criteria_scores": {
+        "同義語検索": 2,
+        "未発見と不存在の区別": 2
+      },
+      "observed_forbidden_behaviors": [],
+      "note": "同義語検索・工房製作・貸与・能力段階を位置つきで記録。",
+      "skill_body_command_read_confirmed": true,
+      "advice_reference_command_read_confirmed": false,
+      "elapsed_seconds": 48.18,
+      "answer_characters": 1768,
+      "saved_report_characters": 0,
+      "log_directory": "model-runs/SR08-with"
+    },
+    {
+      "id": "SR08",
+      "variant": "without",
+      "criteria_scores": {
+        "同義語検索": 2,
+        "未発見と不存在の区別": 2
+      },
+      "observed_forbidden_behaviors": [],
+      "note": "関連検索で製作者を発見。技能の「記載なし」は検索範囲を当該文に添えていない。",
+      "skill_body_command_read_confirmed": false,
+      "advice_reference_command_read_confirmed": false,
+      "elapsed_seconds": 31.22,
+      "answer_characters": 794,
+      "saved_report_characters": 0,
+      "log_directory": "model-runs/SR08-without"
+    },
+    {
+      "id": "SR11",
+      "variant": "with",
+      "criteria_scores": {
+        "閲覧状態": 2,
+        "捏造なし": 2
+      },
+      "observed_forbidden_behaviors": [],
+      "note": "合成状態を明記し、取得不可と検索抜粋を分け、95%を保留。",
+      "skill_body_command_read_confirmed": true,
+      "advice_reference_command_read_confirmed": false,
+      "elapsed_seconds": 39.08,
+      "answer_characters": 1247,
+      "saved_report_characters": 0,
+      "log_directory": "model-runs/SR11-with"
+    },
+    {
+      "id": "SR11",
+      "variant": "without",
+      "criteria_scores": {
+        "閲覧状態": 2,
+        "捏造なし": 2
+      },
+      "observed_forbidden_behaviors": [],
+      "note": "同じ取得限界を扱い、出典を作っていない。",
+      "skill_body_command_read_confirmed": false,
+      "advice_reference_command_read_confirmed": false,
+      "elapsed_seconds": 54.48,
+      "answer_characters": 795,
+      "saved_report_characters": 0,
+      "log_directory": "model-runs/SR11-without"
+    },
+    {
+      "id": "SR15",
+      "variant": "with",
+      "criteria_scores": {
+        "保存成果物の再読": 2,
+        "本文ハッシュ": 2,
+        "計算再実行": 2
+      },
+      "observed_forbidden_behaviors": [],
+      "note": "レポート・計算.py・入力・結果・前後ハッシュを保存し、評価者が再読・再実行。",
+      "skill_body_command_read_confirmed": true,
+      "advice_reference_command_read_confirmed": false,
+      "elapsed_seconds": 128.49,
+      "answer_characters": 177,
+      "saved_report_characters": 3717,
+      "log_directory": "model-runs/SR15-with"
+    },
+    {
+      "id": "SR15",
+      "variant": "without",
+      "criteria_scores": {
+        "保存成果物の再読": 2,
+        "本文ハッシュ": 2,
+        "計算再実行": 2
+      },
+      "observed_forbidden_behaviors": [],
+      "note": "レポート・入力・結果・再実行プログラム入りMarkdownを保存。独立した.pyはないが、保存プログラムを再実行して照合。",
+      "skill_body_command_read_confirmed": false,
+      "advice_reference_command_read_confirmed": false,
+      "elapsed_seconds": 120.9,
+      "answer_characters": 176,
+      "saved_report_characters": 1524,
+      "log_directory": "model-runs/SR15-without"
+    },
+    {
+      "id": "SR17",
+      "variant": "with",
+      "criteria_scores": {
+        "相談の成立条件": 2,
+        "比較と推奨": 2
+      },
+      "observed_forbidden_behaviors": [],
+      "note": "原稿を求めず、温度差・熱流・出力・三案・仮置き・推奨を示す。idea-adviceの実読込あり。SKILL.md本文のコマンド読込は未確認。",
+      "skill_body_command_read_confirmed": false,
+      "advice_reference_command_read_confirmed": true,
+      "elapsed_seconds": 67.11,
+      "answer_characters": 2133,
+      "saved_report_characters": 0,
+      "log_directory": "model-runs/SR17-with"
+    },
+    {
+      "id": "SR17",
+      "variant": "without",
+      "criteria_scores": {
+        "相談の成立条件": 2,
+        "比較と推奨": 2
+      },
+      "observed_forbidden_behaviors": [],
+      "note": "同じ基本条件を扱い、四候補を比較。原稿なしの相談を継続。",
+      "skill_body_command_read_confirmed": false,
+      "advice_reference_command_read_confirmed": false,
+      "elapsed_seconds": 72.23,
+      "answer_characters": 1963,
+      "saved_report_characters": 0,
+      "log_directory": "model-runs/SR17-without"
+    },
+    {
+      "id": "SR19",
+      "variant": "with",
+      "criteria_scores": {
+        "比較軸": 2,
+        "物語への使い方": 2,
+        "機会費用": 2
+      },
+      "observed_forbidden_behaviors": [],
+      "note": "三機構、未知の負荷、工程境界、作者の狙い、採用負担、条件付き推奨を示す。",
+      "skill_body_command_read_confirmed": true,
+      "advice_reference_command_read_confirmed": true,
+      "elapsed_seconds": 83.51,
+      "answer_characters": 2720,
+      "saved_report_characters": 0,
+      "log_directory": "model-runs/SR19-with"
+    },
+    {
+      "id": "SR19",
+      "variant": "without",
+      "criteria_scores": {
+        "比較軸": 2,
+        "物語への使い方": 2,
+        "機会費用": 2
+      },
+      "observed_forbidden_behaviors": [],
+      "note": "同じ三機構と目的を扱い、機会費用・条件付き推奨を示す。",
+      "skill_body_command_read_confirmed": false,
+      "advice_reference_command_read_confirmed": false,
+      "elapsed_seconds": 82.7,
+      "answer_characters": 2460,
+      "saved_report_characters": 0,
+      "log_directory": "model-runs/SR19-without"
+    }
+  ],
+  "trigger_results": [
+    {
+      "id": "TP01",
+      "expected_trigger": true,
+      "skill_read_confirmed": true,
+      "answer_completed": true,
+      "outcome": "observed_match",
+      "log_directory": "model-runs/TP01-natural"
+    },
+    {
+      "id": "TP08",
+      "expected_trigger": true,
+      "skill_read_confirmed": true,
+      "answer_completed": false,
+      "outcome": "read_confirmed_then_usage_limit",
+      "log_directory": "model-runs/TP08-natural"
+    },
+    {
+      "id": "TN01",
+      "expected_trigger": false,
+      "skill_read_confirmed": false,
+      "answer_completed": true,
+      "outcome": "observed_match",
+      "log_directory": "model-runs/TN01-natural"
+    },
+    {
+      "id": "TN02",
+      "expected_trigger": false,
+      "skill_read_confirmed": false,
+      "answer_completed": false,
+      "outcome": "usage_limit_before_selection_unknown",
+      "log_directory": "model-runs/TN02-natural"
+    }
+  ],
+  "limitations": [
+    "Both conditions met the frozen content criteria; this run does not demonstrate an accuracy gain.",
+    "Only seven with-skill runs have command-level SKILL.md read evidence; SR17 read idea-advice but automatic body expansion is unconfirmed.",
+    "Default CLI settings were consistent, but the actual model name was not exposed and identical model identity is unconfirmed.",
+    "Global unrelated skills remained available; the SR15 baseline used readability/docs skills.",
+    "CLI warned that skill descriptions were shortened because of context budget; natural triggering is environment-dependent.",
+    "No three-run repetitions, full 20-case judgments, complete 20-trigger test, human expert review, or variance estimate.",
+    "Citation checks are limited to checked source locations; remaining baseline PDF assertions are not globally certified.",
+    "Design source reading-range wording and evaluation instructions were clarified after runs; executable instructions and parser are unchanged."
+  ]
+}
