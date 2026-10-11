@@ -2,6 +2,7 @@
 
 from pathlib import Path
 import math
+import os
 import subprocess
 import sys
 import unittest
@@ -13,7 +14,8 @@ SCRIPT = Path(__file__).resolve().parents[1] / "scripts" / "dimcheck.py"
 class DimcheckTests(unittest.TestCase):
     def run_cli(self, *args):
         result = subprocess.run([sys.executable, str(SCRIPT), *args],
-                                capture_output=True, text=True, timeout=5)
+                                capture_output=True, encoding="utf-8", timeout=5,
+                                env={**os.environ, "PYTHONIOENCODING": "cp1252", "PYTHONUTF8": "0"})
         self.assertNotIn("Traceback", result.stderr)
         return result
 

@@ -29,7 +29,7 @@ class PackageTests(unittest.TestCase):
                 self.assertTrue(path.resolve().is_relative_to(ROOT.resolve()))
 
     def test_review_cases_and_fixtures(self):
-        data = json.loads((ROOT / "evals/cases.json").read_text())
+        data = json.loads((ROOT / "evals/cases.json").read_text(encoding="utf-8"))
         cases = data["cases"]
         self.assertTrue(data["frozen_before_model_execution"])
         self.assertGreaterEqual(len(cases), 20)
@@ -49,10 +49,10 @@ class PackageTests(unittest.TestCase):
         self.assertEqual(used, {path.resolve() for path in (ROOT / "evals/fixtures").rglob("*") if path.is_file()})
         for path in used:
             if path.suffix == ".json":
-                json.loads(path.read_text())
+                json.loads(path.read_text(encoding="utf-8"))
 
     def test_trigger_balance(self):
-        cases = json.loads((ROOT / "evals/trigger-cases.json").read_text())["cases"]
+        cases = json.loads((ROOT / "evals/trigger-cases.json").read_text(encoding="utf-8"))["cases"]
         self.assertEqual(len(cases), 20)
         self.assertEqual(len({case["id"] for case in cases}), 20)
         self.assertEqual(sum(case["expected_trigger"] is True for case in cases), 10)
@@ -71,7 +71,7 @@ class PackageTests(unittest.TestCase):
                     self.assertIsNone(prohibited.search(path.read_text(encoding="utf-8")))
 
     def test_parser_has_no_execution_or_external_dependency(self):
-        tree = ast.parse((ROOT / "scripts/dimcheck.py").read_text())
+        tree = ast.parse((ROOT / "scripts/dimcheck.py").read_text(encoding="utf-8"))
         imports = {node.module.split(".")[0] for node in ast.walk(tree) if isinstance(node, ast.ImportFrom)}
         imports |= {alias.name.split(".")[0] for node in ast.walk(tree) if isinstance(node, ast.Import) for alias in node.names}
         self.assertLessEqual(imports, {"ast", "dataclasses", "decimal", "math", "re", "sys"})

@@ -20,6 +20,8 @@ Claude Codeでは先頭を `/science-review` にする。
 
 Python 3.10以上が必要。Windowsでは以下の `python3` を `python` と読み替え、`python --version` でバージョンを確認する。追加パッケージやGitはスクリプトの実行に不要。
 
+スクリプトと計算補助ツールの標準出力・標準エラーはUTF-8。別のプログラムから呼び出す場合もUTF-8で読み取る。
+
 このリポジトリをcloneするか、[リリース](https://github.com/Mr-Kondo/science-review-design/releases)のソースアーカイブを展開して、そのフォルダで実行する。
 
 ```sh

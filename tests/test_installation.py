@@ -2,6 +2,7 @@
 
 import contextlib
 import io
+import os
 from pathlib import Path
 import shutil
 import subprocess
@@ -190,16 +191,19 @@ class InstallationTests(unittest.TestCase):
         self.assertEqual(list(self.project.iterdir()), [])
 
     def test_cli_and_installed_skill_work_without_git(self):
+        legacy_encoding = {**os.environ, "PYTHONIOENCODING": "cp1252", "PYTHONUTF8": "0"}
         for script, extra in (("install.py", []), ("install.py", []), ("uninstall.py", ["--dry-run"])):
             result = subprocess.run([sys.executable, str(ROOT / "tools" / script), *self.args, *extra],
-                                    cwd=self.project, capture_output=True, text=True)
+                                    cwd=self.project, capture_output=True, encoding="utf-8", env=legacy_encoding)
             self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertIn(str(self.project), result.stdout)
         result = subprocess.run([sys.executable, str(self.codex / "scripts/dimcheck.py"),
-                                 "conv", "36", "km/h", "m/s"], capture_output=True, text=True)
+                                 "conv", "36", "km/h", "m/s"], capture_output=True,
+                                encoding="utf-8", env=legacy_encoding)
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertIn("10", result.stdout)
         result = subprocess.run([sys.executable, "-m", "unittest", "discover", "-s", str(self.codex / "tests")],
-                                cwd=self.project, capture_output=True, text=True)
+                                cwd=self.project, capture_output=True, encoding="utf-8")
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertEqual(self.call(uninstall.main), 0)
 
