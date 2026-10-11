@@ -16,7 +16,7 @@ import tempfile
 SOURCE = Path(__file__).resolve().parents[1] / ".claude/skills/science-review"
 NAME = "science-review"
 MARKER = ".science-review-install.json"
-VERSION = "0.1.1"
+VERSION = "2.0.0"
 EVAL_FILES = (
     "README.md", "cases.json", "trigger-cases.json", "input-preservation.json",
     "model-results.json", "extended-results.json", "verification-results.md",
