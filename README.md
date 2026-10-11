@@ -62,6 +62,8 @@ python3 .agents/skills/science-review/scripts/dimcheck.py eq J 'kg*m²/s²'
 
 [評価入力・手順](.claude/skills/science-review/evals/README.md)と[検査記録](.claude/skills/science-review/evals/verification-results.md)を参照。モデルの全ログと作業端末の絶対パスを含む記録はローカルで保持し、Gitには含めない。公開する評価概要と匿名fixtureを区別している。
 
+[GitHub ActionsのCI](https://github.com/Mr-Kondo/science-review-design/actions/workflows/ci.yml)は、Linux・Windows・macOSとPython 3.10・3.14の計6構成で、上記2つの検査スイートを実行する。インストール・更新・削除、日本語・空白を含むパス、変更の保護、更新失敗時の復旧、配置したスキルの補助コードと検査の実行を含む。製品アプリ上の起動・モデルの判断・専門家評価はCIの検査対象に含めない。
+
 ## 設計の由来
 
 [実装指示](claude-code-implementation-prompt.md)、[設計書](research-and-design.md)、[固定版の元資料](source-manifest.json)、[設計出典・確認状態](.claude/skills/science-review/references/design-sources.md)を保持している。元資料の取得履歴と今回の新版の検査結果は別記録。未確認のライセンスを推定して付与していない。
