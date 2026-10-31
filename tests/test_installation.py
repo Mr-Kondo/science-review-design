@@ -2,6 +2,7 @@
 
 import contextlib
 import io
+import json
 import os
 from pathlib import Path
 import shutil
@@ -9,6 +10,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+import zipfile
 from unittest.mock import patch
 
 
@@ -50,11 +52,18 @@ class InstallationTests(unittest.TestCase):
             shutil.copyfile(path, target)
         (source / "SKILL.md").write_bytes(b"updated skill\n")
         (source / "references/idea-advice.md").unlink()
-        with patch.object(install, "SOURCE", source):
+        package_list = source.parent / "updated-package-files.json"
+        package_list.write_text(json.dumps([name for name in json.loads(install.PACKAGE_LIST.read_text())
+                                           if name != "references/idea-advice.md"]))
+        with patch.object(install, "SOURCE", source), patch.object(install, "PACKAGE_LIST", package_list):
             self.assertEqual(self.call(install.main), 0)
         for destination in (self.codex, self.claude):
             self.assertEqual((destination / "SKILL.md").read_bytes(), b"updated skill\n")
             self.assertFalse((destination / "references/idea-advice.md").exists())
+            backups = list((destination.parent.parent / "science-review-backups").glob("*/science-review"))
+            self.assertEqual(len(backups), 1)
+            self.assertEqual((backups[0] / "SKILL.md").read_bytes(), expected["SKILL.md"])
+            self.assertTrue(install.check_destination(backups[0]))
         neighbour = self.codex.parent / "another-skill"
         neighbour.mkdir()
         (neighbour / "keep.txt").write_text("keep")
@@ -189,6 +198,99 @@ class InstallationTests(unittest.TestCase):
             self.assertEqual(install.main(["--scope", "project"]), 1)
             self.assertEqual(uninstall.main(["--scope", "user", "--project-dir", str(self.project)]), 1)
         self.assertEqual(list(self.project.iterdir()), [])
+
+    def test_antigravity_targets_and_project_deduplication(self):
+        for target in ("antigravity", "antigravity-cli"):
+            self.assertEqual(self.call(install.main, ["--target", target]), 0)
+            self.assertTrue(install.check_destination(self.codex))
+            self.assertFalse(self.claude.exists())
+            self.assertEqual(self.call(uninstall.main, ["--target", target]), 0)
+        with patch.object(Path, "home", return_value=self.project):
+            with contextlib.redirect_stdout(io.StringIO()):
+                self.assertEqual(install.main([]), 0)
+                paths = install.destinations(install.parser("").parse_args([]))
+                self.assertEqual(len(paths), 4)
+                for path in paths:
+                    self.assertTrue(install.check_destination(path))
+                    self.assertEqual(json.loads((path / install.MARKER).read_text())["version"], install.VERSION)
+                self.assertEqual(uninstall.main([]), 0)
+        with patch.object(install, "install_one") as write:
+            self.assertEqual(self.call(install.main), 0)
+            self.assertEqual(write.call_count, 2)
+
+    def test_backup_failure_prevents_replacement(self):
+        self.assertEqual(self.call(install.main), 0)
+        before = install.inventory(self.codex)
+        errors = io.StringIO()
+        with patch.object(shutil, "copytree", side_effect=OSError("backup failure")) as copy, \
+                contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(errors):
+            self.assertEqual(install.main([*self.args, "--target", "codex"]), 1)
+        self.assertEqual(copy.call_args.args[0], self.codex)
+        self.assertIn("backup failure", errors.getvalue())
+        self.assertEqual(install.inventory(self.codex), before)
+        self.assertEqual(list(self.codex.parent.glob(".science-review-*")), [])
+        self.assertEqual(list((self.codex.parent.parent / "science-review-backups").iterdir()), [])
+
+    def test_package_list_refuses_unsafe_and_missing_paths(self):
+        package_list = Path(self.temporary.name) / "bad-list.json"
+        for names in (["SKILL.md", "../private.md"], ["SKILL.md", "/private.md"],
+                      ["SKILL.md", "references/private.local.md"],
+                      ["SKILL.md", "references/private.LOCAL.MD"],
+                      ["SKILL.md", "references/../SKILL.md"],
+                      ["SKILL.md", "references\\private.md"], ["SKILL.md", "SKILL.md"],
+                      ["SKILL.md", "references/missing.md"], [], {}, [None],
+                      ["references/missing.md"], ["SKILL.md", "C:/x.md"],
+                      ["SKILL.md", ".hidden/x.md"], ["SKILL.md", "references/x.txt"],
+                      ["SKILL.md", "tools/x.py"], ["SKILL.md", "evals/__pycache__/x.py"],
+                      ["SKILL.md", "feedback/log.json"]):
+            with self.subTest(names=names):
+                package_list.write_text(json.dumps(names))
+                with patch.object(install, "PACKAGE_LIST", package_list):
+                    self.assertEqual(self.call(install.main), 1)
+                self.assertEqual(list(self.project.iterdir()), [])
+
+    def test_private_extras_are_not_packaged_and_archive_matches_checkout(self):
+        source = Path(self.temporary.name).resolve() / "checkout/.claude/skills/science-review"
+        for path in install.package_files():
+            target = source / path.relative_to(install.SOURCE)
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(path, target)
+        (source / "references/private-notes.local.md").write_text("private")
+        (source / "references/untracked.json").write_text('{"private":true}')
+        checkout = source.parents[2]
+        (checkout / "tools").mkdir()
+        for name in ("install.py", "uninstall.py", "package-files.json"):
+            shutil.copyfile(ROOT / "tools" / name, checkout / "tools" / name)
+        with patch.object(install, "SOURCE", source):
+            self.assertEqual(self.call(install.main), 0)
+        expected = install.inventory(self.codex)
+        self.assertNotIn("references/private-notes.local.md", expected)
+        self.assertNotIn("references/untracked.json", expected)
+        archive = checkout.parent / "source.zip"
+        with zipfile.ZipFile(archive, "w") as output:
+            for path in checkout.rglob("*"):
+                if path.is_file():
+                    output.write(path, path.relative_to(checkout))
+        extracted = checkout.parent / "extracted"
+        with zipfile.ZipFile(archive) as data:
+            data.extractall(extracted)
+        self.assertFalse((extracted / ".git").exists())
+        archive_project = self.project / "archive-install"
+        archive_project.mkdir()
+        args = [sys.executable, str(extracted / "tools/install.py"), "--scope", "project",
+                "--project-dir", str(archive_project)]
+        result = subprocess.run(args, cwd=self.project, capture_output=True, encoding="utf-8")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        for relative in (".agents/skills/science-review", ".claude/skills/science-review"):
+            self.assertEqual(install.inventory(archive_project / relative), expected)
+
+    def test_manifest_covers_tracked_skill_files(self):
+        if not (ROOT / ".git").exists() or shutil.which("git") is None:
+            self.skipTest("Checkout-only manifest completeness check")
+        tracked = subprocess.check_output(["git", "ls-files", "-z", "--", ".claude/skills/science-review"],
+                                          cwd=ROOT).decode("utf-8").rstrip("\0").split("\0")
+        self.assertEqual(set(tracked), {str(path.relative_to(ROOT).as_posix())
+                                       for path in install.package_files()})
 
     def test_cli_and_installed_skill_work_without_git(self):
         legacy_encoding = {**os.environ, "PYTHONIOENCODING": "cp1252", "PYTHONUTF8": "0"}

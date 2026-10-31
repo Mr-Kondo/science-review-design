@@ -59,6 +59,16 @@ class PackageTests(unittest.TestCase):
         self.assertEqual(sum(case["expected_trigger"] is False for case in cases), 10)
         self.assertTrue(all(case["prompt"] and case["reason"] for case in cases))
 
+    def test_structure_cases_are_frozen_and_separate_from_model_input(self):
+        data = json.loads((ROOT / "evals/structure-cases.json").read_text(encoding="utf-8"))
+        self.assertTrue(data["frozen_before_model_execution"])
+        cases = data["cases"]
+        self.assertEqual(len({case["id"] for case in cases}), 3)
+        for case in cases:
+            self.assertTrue(case["prompt"])
+            self.assertTrue(case["expected"])
+            self.assertTrue(case["forbidden"])
+
     def test_no_project_specific_dependency(self):
         prohibited = re.compile(r"Defy|Project_Defy|天稟|アル|P[0-9]-[PCS]-|P0[〜～]P9|第[0-9０-９]+形態")
         for path in ROOT.rglob("*"):

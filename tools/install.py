@@ -4,9 +4,10 @@
 from __future__ import annotations
 
 import argparse
+from datetime import datetime, timezone
 import hashlib
 import json
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 import shutil
 import stat
 import sys
@@ -16,17 +17,20 @@ import tempfile
 SOURCE = Path(__file__).resolve().parents[1] / ".claude/skills/science-review"
 NAME = "science-review"
 MARKER = ".science-review-install.json"
-VERSION = "2.0.0"
-EVAL_FILES = (
-    "README.md", "cases.json", "trigger-cases.json", "input-preservation.json",
-    "model-results.json", "extended-results.json", "verification-results.md",
-)
+VERSION = "2.1.0"
+PACKAGE_LIST = Path(__file__).with_name("package-files.json")
+TARGETS = {
+    "codex": Path(".agents/skills"),
+    "claude": Path(".claude/skills"),
+    "antigravity": Path(".gemini/config/skills"),
+    "antigravity-cli": Path(".gemini/antigravity-cli/skills"),
+}
 
 
 def parser(description: str) -> argparse.ArgumentParser:
     result = argparse.ArgumentParser(description=description)
     result.add_argument("--scope", choices=("user", "project"), default="user")
-    result.add_argument("--target", choices=("codex", "claude", "all"), default="all")
+    result.add_argument("--target", choices=(*TARGETS, "all"), default="all")
     result.add_argument("--project-dir", type=Path, help="Required with --scope project")
     result.add_argument("--dry-run", action="store_true", help="Check and show without changing files")
     return result
@@ -41,9 +45,16 @@ def destinations(args: argparse.Namespace) -> list[Path]:
         if args.project_dir is not None:
             raise ValueError("--project-dir is only valid with --scope project")
         base = Path.home().resolve()
-    targets = ("codex", "claude") if args.target == "all" else (args.target,)
-    return [base / (".agents" if target == "codex" else ".claude") / "skills" / NAME
-            for target in targets]
+    targets = TARGETS if args.target == "all" else (args.target,)
+    paths = []
+    for target in targets:
+        relative = TARGETS[target]
+        if args.scope == "project" and target != "claude":
+            relative = TARGETS["codex"]
+        path = base / relative / NAME
+        if path not in paths:
+            paths.append(path)
+    return paths
 
 
 def reject_links(path: Path) -> None:
@@ -97,12 +108,24 @@ def check_destination(path: Path) -> bool:
 
 
 def package_files() -> list[Path]:
-    files = [SOURCE / "SKILL.md", *(SOURCE / "evals" / name for name in EVAL_FILES)]
-    for group in ("references", "assets", "scripts", "tests", "evals/fixtures"):
-        for entry in sorted((SOURCE / group).rglob("*")):
-            reject_links(entry)
-            if "__pycache__" not in entry.parts and entry.suffix in (".md", ".py", ".json") and entry.is_file():
-                files.append(entry)
+    # ADR: adr/delivery-and-output-contracts.md; archives must not need Git.
+    names = json.loads(PACKAGE_LIST.read_text(encoding="utf-8"))
+    if not isinstance(names, list) or not names or not all(isinstance(name, str) for name in names):
+        raise ValueError("Package list must be a nonempty list of paths")
+    if len(set(names)) != len(names) or "SKILL.md" not in names:
+        raise ValueError("Duplicate package path or missing SKILL.md")
+    files = []
+    for name in names:
+        relative = PurePosixPath(name)
+        if (relative.is_absolute() or relative.as_posix() != name
+                or ".." in relative.parts or "\\" in name or ":" in name
+                or any(part.startswith(".") or part in ("feedback", "__pycache__")
+                       or part.lower().endswith(".local.md") for part in relative.parts)
+                or relative.suffix not in (".md", ".py", ".json")
+                or (name != "SKILL.md" and relative.parts[0] not in
+                    ("references", "assets", "scripts", "tests", "evals"))):
+            raise ValueError(f"Invalid package path: {name}")
+        files.append(SOURCE / name)
     for entry in files:
         reject_links(entry)
         if not entry.is_file():
@@ -128,6 +151,17 @@ def install_one(destination: Path, files: list[Path]) -> None:
             "name": NAME, "schema": 1, "version": VERSION, "files": inventory(staging),
         }, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         if check_destination(destination):
+            backup_root = destination.parent.parent / "science-review-backups"
+            reject_links(backup_root)
+            backup_root.mkdir(parents=True, exist_ok=True)
+            stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+            backup = Path(tempfile.mkdtemp(prefix=f"before-{VERSION}-{stamp}-", dir=backup_root))
+            try:
+                shutil.copytree(destination, backup / NAME)
+            except OSError:
+                shutil.rmtree(backup)
+                raise
+            print(f"backup: {backup / NAME}")
             destination.rename(previous)
         try:
             staging.rename(destination)
@@ -143,7 +177,7 @@ def install_one(destination: Path, files: list[Path]) -> None:
 
 
 def main(argv: list[str] | None = None) -> int:
-    args = parser("Install or update science-review for Codex and Claude Code").parse_args(argv)
+    args = parser("Install or update science-review for Codex, Claude Code, and Antigravity").parse_args(argv)
     try:
         paths = destinations(args)
         files = package_files()

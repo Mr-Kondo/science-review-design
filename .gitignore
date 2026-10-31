@@ -2,6 +2,7 @@ __pycache__/
 *.py[cod]
 .DS_Store
 .venv/
+feedback/
 # Machine paths and full model conversations stay in the local checkout.
 .claude/skills/science-review/evals/model-runs/
 .claude/skills/science-review/evals/probe-logs/
