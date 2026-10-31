@@ -34,3 +34,12 @@ jobs:
         run: python -m unittest discover -s tests -v
       - name: Skill package and calculation checks
         run: python -m unittest discover -s .claude/skills/science-review/tests -v
+      - name: Execute the README PowerShell example
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $readme = Get-Content -LiteralPath README.md -Raw -Encoding utf8
+          $pattern = '(?s)<!-- docs-smoke:start -->\s*```powershell\r?\n(.*?)```\s*<!-- docs-smoke:end -->'
+          $block = [regex]::Match($readme, $pattern)
+          if (-not $block.Success) { throw 'README PowerShell example is missing' }
+          & ([scriptblock]::Create($block.Groups[1].Value))

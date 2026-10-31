@@ -1,6 +1,6 @@
 # 評価と利用
 
-共有本体は `.claude/skills/science-review/`。Codex用の `.agents/skills/science-review/` は共有本体への相対リンク。コピーして使う場合もこの対応を保つか、Codexでは本体を `.agents/skills/science-review/` へ配置する。グローバルインストールは行っていない。
+共有本体は `.claude/skills/science-review/`。Codex用の `.agents/skills/science-review/` は共有本体への相対リンク。配布時はリポジトリのインストーラーで各ホストへコピーする。ユーザー配置とプロジェクト配置はリポジトリのREADMEを参照。
 
 ## 利用例
 
@@ -35,6 +35,10 @@ testsはCLIの終了コード、数値許容誤差、不正入力・資源上限
 [cases.json](cases.json) は監修16件＋相談4件。[trigger-cases.json](trigger-cases.json) は肯定10件・近接否定10件。全fixtureは匿名の合成作品・説明。原稿・実在の経歴を使わない。出典403のケースは合成状態で、実際のHTTP取得や論文として扱わない。
 
 期待判断・禁止挙動・採点観点はモデル実行前に固定する。実行時のcases/trigger/fixture/skillのSHA-256を記録する。評価モデルへ渡すのはprompt、指定fixture、必要なスキルだけ。正答・禁止挙動・採点表は評価者に留め、モデル入力へ混ぜない。
+
+[structure-cases.json](structure-cases.json)は指定列・見出し・残す節の3件。本文の指定構造を改訂するときは、同じモデル・入力・ツール条件で改訂前後を比べる。科学判断の代表ケースも合わせ、構造順守と科学判断を別々に採点する。小標本の確認を一般的精度と呼ばない。
+
+実行ログと検証用ファイルはリポジトリルートの `feedback/` 内に保存し、追跡しない。旧 `evals/model-runs/`・`probe-logs/`・`extended-raw/`・`model-probe.json` は `feedback/legacy-evals/` へ移動する。公開済みの匿名ケース・採点概要はここに維持する。新しい評価を過去の記録へ上書きしない。
 
 ## モデル監修と起動は別評価
 
