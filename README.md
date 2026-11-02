@@ -107,4 +107,26 @@ python3 .agents/skills/science-review/scripts/dimcheck.py eq J 'kg*m²/s²'
 
 2.1.0の少数例比較では指定構造を保持したが、冒頭の判定と計算結論の不整合、未出典の性能値の付加が変更前後とも残った。[Issue #2](https://github.com/Mr-Kondo/science-review-design/issues/2)で追跡し、科学判断の精度向上は主張しない。
 
+更新時だけ使う[知識索引](knowledge/index.md)と[有限比較のADR](adr/wikiskill-trial.md)は、[Issue #4](https://github.com/Mr-Kondo/science-review-design/issues/4)の検証用。通常の監修やインストールには知識層を追加しない。
+`python3 tools/wiki_eval.py --help` で計画凍結・実行・採点確認の手順を確認できる。ログは新しい `feedback/` の実行フォルダへ保存し、同じ試行を上書きしない。索引の比較と候補スキルの比較を分け、改善が示されなければ候補を採用しない。
+
+[2026-11-03の比較結果](docs/wiki-trial-results.md)では索引なし／ありが同点、候補は反復改善と回帰なしの条件を満たさず不採用。スキル本体・配布版2.1.0は維持する。
+このツールは本件専用であり、第一段階には非公開の既存ST02/ST03記録が必要なため、cloneだけでは実行できない。
+Claude Code 2.1.316のsafe-mode等を前提にし、別CLI版の互換性は未確認。user設定は接続先のため保持し、空の一時cwdで実行する。
+実行には既存のモデル利用契約を使う。以下のrunはモデルを呼び出すため、再検証の予算・採点規則を先に決める。
+
+```sh
+python3 tools/wiki_eval.py freeze maintenance feedback/new-trial-maintenance
+python3 tools/wiki_eval.py run feedback/new-trial-maintenance
+python3 tools/wiki_eval.py summarize feedback/new-trial-maintenance feedback/new-trial-maintenance-scores.json
+python3 tools/wiki_eval.py freeze quality feedback/new-trial-quality --candidate feedback/candidate-SKILL.md --selection feedback/selection.json
+python3 tools/wiki_eval.py run feedback/new-trial-quality
+python3 tools/wiki_eval.py summarize feedback/new-trial-quality feedback/new-trial-quality-scores.json
+```
+
+採点JSONは `scores` 配列に各試行の `id`、全軸の真偽値を持つ `axes`、根拠の `evidence` を記す。
+試行IDと軸・規則は凍結plan.jsonにある。selection.jsonには `maintenance_directory`、`maintenance_summary_sha256`、`candidate_sha256`、`target_axis`（今回は `consistent`）、`reason` が必要。
+それぞれ完了済み第一段階のパス、summary.jsonのSHA-256、候補のSHA-256、事前に選ぶ対象軸、選択理由を指定する。
+凍結後にコード・CLI版・入力が変わった場合や途中失敗時は停止し、同じフォルダの再開・上書きはしない。新しい計画を使う場合も原因と追加呼出の扱いを記録する。
+
 [実装指示](claude-code-implementation-prompt.md)、[設計書](research-and-design.md)、[固定版の元資料](source-manifest.json)、[設計出典・確認状態](.claude/skills/science-review/references/design-sources.md)を保持している。元資料の取得履歴と今回の新版の検査結果は別記録。未確認のライセンスを推定して付与していない。
