@@ -2,6 +2,7 @@
 status: accepted
 date: 2026-10-31
 decision-makers: user, Codex
+superseded-in-part-by: slim-package.md
 ---
 
 # 配布一覧・検証ログ・出力構造の契約を固定する

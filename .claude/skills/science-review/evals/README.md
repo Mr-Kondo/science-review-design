@@ -1,5 +1,7 @@
 # 評価と利用
 
+`evals/` と `tests/` はリポジトリ専用で、インストーラーは配置しない（[ADR](../../../../adr/slim-package.md)）。スキル評価やdimcheck改訂のときだけ、cases.json・trigger-cases.json・fixtures・tests/test_dimcheck.py を使う。
+
 共有本体は `.claude/skills/science-review/`。Codex用の `.agents/skills/science-review/` は共有本体への相対リンク。配布時はリポジトリのインストーラーで各ホストへコピーする。ユーザー配置とプロジェクト配置はリポジトリのREADMEを参照。
 
 ## 利用例
