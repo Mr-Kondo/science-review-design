@@ -2,6 +2,7 @@
 status: accepted
 date: 2026-11-03
 decision-makers: user, Codex
+superseded-in-part-by: wikiskill-release-delivery.md
 ---
 
 # 更新用知識索引を有限の二段階比較で検証する
@@ -89,6 +90,8 @@ userだけのsetting-sourcesを使用する。第一段階と第二段階は別�
 safe-modeによるカスタマイズ無効化はCLI仕様に基づくが、通信内容の独立監査までは実施していない。
 
 ## 採否
+
+リリースと配布版についての「2.1.0を維持しリリースしない」という判断は、[後続ADR](wikiskill-release-delivery.md)で置き換えた。以下の比較時点の採否と生ログの版は変更しない。
 
 [公開結果](../docs/wiki-trial-results.md)のとおりH1・H2は未支持。第二段階の整合は現行7/8、候補8/8だが改善は反復2のQ3のみ。
 候補の構造回帰2件、科学的に曖昧な補足1件もある。候補は本体へ適用せず2.1.0を維持する。
