@@ -73,6 +73,24 @@ class InstallationTests(unittest.TestCase):
         self.assertFalse(self.claude.exists())
         self.assertEqual((neighbour / "keep.txt").read_text(), "keep")
 
+    def test_update_from_legacy_layout_drops_evals_and_tests(self):
+        self.assertEqual(self.call(install.main), 0)
+        for destination in (self.codex, self.claude):
+            for name in ("evals/cases.json", "tests/test_x.py"):
+                (destination / name).parent.mkdir(exist_ok=True)
+                (destination / name).write_text("{}")
+            marker = destination / install.MARKER
+            data = json.loads(marker.read_text(encoding="utf-8"))
+            data["files"] = install.inventory(destination)
+            marker.write_text(json.dumps(data), encoding="utf-8")
+        self.assertEqual(self.call(install.main), 0)
+        for destination in (self.codex, self.claude):
+            self.assertFalse((destination / "evals").exists())
+            self.assertFalse((destination / "tests").exists())
+            self.assertTrue((destination / "SKILL.md").exists())
+            backups = list((destination.parent.parent / "science-review-backups").glob("*/science-review"))
+            self.assertTrue((backups[0] / "evals/cases.json").exists())
+
     def test_dry_run_does_not_write_or_delete(self):
         self.assertEqual(self.call(install.main, ["--dry-run"]), 0)
         self.assertEqual(list(self.project.iterdir()), [])
@@ -289,8 +307,11 @@ class InstallationTests(unittest.TestCase):
             self.skipTest("Checkout-only manifest completeness check")
         tracked = subprocess.check_output(["git", "ls-files", "-z", "--", ".claude/skills/science-review"],
                                           cwd=ROOT).decode("utf-8").rstrip("\0").split("\0")
-        self.assertEqual(set(tracked), {str(path.relative_to(ROOT).as_posix())
-                                       for path in install.package_files()})
+        # adr/slim-package.md: evals/ and tests/ stay in the repository only.
+        runtime = {name for name in tracked
+                   if name.split("/")[3] not in ("evals", "tests", "__pycache__")}
+        self.assertEqual(runtime, {str(path.relative_to(ROOT).as_posix())
+                                   for path in install.package_files()})
 
     def test_cli_and_installed_skill_work_without_git(self):
         legacy_encoding = {**os.environ, "PYTHONIOENCODING": "cp1252", "PYTHONUTF8": "0"}
@@ -304,9 +325,8 @@ class InstallationTests(unittest.TestCase):
                                 encoding="utf-8", env=legacy_encoding)
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertIn("10", result.stdout)
-        result = subprocess.run([sys.executable, "-m", "unittest", "discover", "-s", str(self.codex / "tests")],
-                                cwd=self.project, capture_output=True, encoding="utf-8")
-        self.assertEqual(result.returncode, 0, result.stderr)
+        for name in ("tests", "evals"):
+            self.assertFalse((self.codex / name).exists())
         self.assertEqual(self.call(uninstall.main), 0)
 
 

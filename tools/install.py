@@ -17,7 +17,7 @@ import tempfile
 SOURCE = Path(__file__).resolve().parents[1] / ".claude/skills/science-review"
 NAME = "science-review"
 MARKER = ".science-review-install.json"
-VERSION = "2.1.1"
+VERSION = "2.2.0"
 PACKAGE_LIST = Path(__file__).with_name("package-files.json")
 TARGETS = {
     "codex": Path(".agents/skills"),
@@ -123,14 +123,14 @@ def package_files() -> list[Path]:
                        or part.lower().endswith(".local.md") for part in relative.parts)
                 or relative.suffix not in (".md", ".py", ".json")
                 or (name != "SKILL.md" and relative.parts[0] not in
-                    ("references", "assets", "scripts", "tests", "evals"))):
+                    ("references", "assets", "scripts"))):
             raise ValueError(f"Invalid package path: {name}")
         files.append(SOURCE / name)
     for entry in files:
         reject_links(entry)
         if not entry.is_file():
             raise ValueError(f"Missing package file: {entry}")
-    for group in ("references", "assets", "scripts", "tests", "evals/fixtures"):
+    for group in ("references", "assets", "scripts"):
         if not any(entry.is_relative_to(SOURCE / group) for entry in files):
             raise ValueError(f"Missing package directory: {SOURCE / group}")
     return files
