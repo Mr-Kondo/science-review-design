@@ -8,3 +8,7 @@ feedback/
 .claude/skills/science-review/evals/probe-logs/
 .claude/skills/science-review/evals/model-probe.json
 .claude/skills/science-review/evals/extended-raw/
+evals/science-review/model-runs/
+evals/science-review/probe-logs/
+evals/science-review/model-probe.json
+evals/science-review/extended-raw/

@@ -42,7 +42,7 @@ ignoreの `feedback/` は全階層に効かせ、検証結果の混入を防ぐ�
 
 配布漏れ・復旧失敗はリリース停止。科学判断の回帰や構造不適合が残れば指示を再検討し、結果を隠して再試行しない。モデル・OSの検証不能は未確認としてIssueへ残す。
 
-2026-10-31の限定比較では構造適合は変更前後とも3/3、科学代表3件の主要判断に回帰なし。ST02の冒頭判定と後段訂正の不整合、ST03の未出典性能値は全条件で残り、改善は示せなかった。同じ失敗の再試行を停止し、[Issue #2](https://github.com/Mr-Kondo/science-review-design/issues/2)で追跡する。詳細は[評価記録](../.claude/skills/science-review/evals/verification-results.md)を参照。
+2026-10-31の限定比較では構造適合は変更前後とも3/3、科学代表3件の主要判断に回帰なし。ST02の冒頭判定と後段訂正の不整合、ST03の未出典性能値は全条件で残り、改善は示せなかった。同じ失敗の再試行を停止し、[Issue #2](https://github.com/Mr-Kondo/science-review-design/issues/2)で追跡する。詳細は[評価記録](../evals/science-review/verification-results.md)を参照。
 
 ## 非機能要件と機会費用
 

@@ -132,7 +132,7 @@ class TrialTests(unittest.TestCase):
             (root / "tools").mkdir()
             (root / "tools/wiki-cases.json").write_bytes((w.ROOT / "tools/wiki-cases.json").read_bytes())
             for name in ("adr/delivery-and-output-contracts.md",
-                         ".claude/skills/science-review/evals/verification-results.md",
+                         "evals/science-review/verification-results.md",
                          "knowledge/index.md", "knowledge/verdict-consistency.md", "knowledge/unsupported-performance.md"):
                 target = root / name
                 target.parent.mkdir(parents=True, exist_ok=True)

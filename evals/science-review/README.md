@@ -1,6 +1,6 @@
 # 評価と利用
 
-`evals/` と `tests/` はリポジトリ専用で、インストーラーは配置しない（[ADR](../../../../adr/slim-package.md)）。スキル評価やdimcheck改訂のときだけ、cases.json・trigger-cases.json・fixtures・tests/test_dimcheck.py を使う。
+`evals/science-review/` と `tests/science-review/` はリポジトリ専用で、スキルフォルダの外に置く（[ADR](../../adr/skills-cli-update.md)）。スキル評価やdimcheck改訂のときだけ、cases.json・trigger-cases.json・fixtures・tests/science-review/test_dimcheck.py を使う。
 
 共有本体は `.claude/skills/science-review/`。Codex用の `.agents/skills/science-review/` は共有本体への相対リンク。配布時はリポジトリのインストーラーで各ホストへコピーする。ユーザー配置とプロジェクト配置はリポジトリのREADMEを参照。
 
@@ -23,7 +23,7 @@ Claude Codeでは同じ文の先頭を `/science-review` にする。作品プ�
 プロジェクトルートから実行する。Python 3.10以上、第三者ライブラリは不要。
 
 ```sh
-python3 -m unittest discover -s .claude/skills/science-review/tests -v
+python3 -m unittest discover -s tests/science-review -v
 python3 .agents/skills/science-review/scripts/dimcheck.py eq J 'kg*m²/s²'
 python3 .agents/skills/science-review/scripts/dimcheck.py conv 36 km/h m/s
 ```

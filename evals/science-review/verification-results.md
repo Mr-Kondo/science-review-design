@@ -103,7 +103,9 @@ SKILL.mdへ、引用するファイル・行・資料名・URLを返答直前に
 | [NASA・Advanced Extravehicular Protective Systems Study, Vol.2](https://ntrs.nasa.gov/api/citations/19720015251/downloads/19720015251.pdf) | §2.1.1.1、PDF15ページ。消耗式熱制御のwater boiler・sublimator・evaporator | 540ページのうち該当範囲を確認。創作装置の性能保証ではない |
 | [FHWA・Seismic Retrofitting Manual for Highway Structures, Part 1](https://www.fhwa.dot.gov/publications/research/infrastructure/bridge/06032/index.cfm) | 第7章§7.2、印刷221ページ（PDF267）。接続部と基礎へ伝える地震時の荷重経路 | 658ページのうち該当範囲を確認。架空の支持機構や橋の安全性を認証しない |
 
-初期比較では、NASAのエネルギー・運動量、熱制御7.1・7.2.9、PCMの紹介、OpenStax、Analog Devicesの熱電FAQなども照合した。取得失敗を全文確認済みとせず、未読の資料を新たな数値性能の根拠にしない。設計資料の出典履歴は [design-sources.md](../references/design-sources.md) に残す。
+初期比較では、NASAのエネルギー・運動量、熱制御7.1・7.2.9、PCMの紹介、OpenStax、Analog Devicesの熱電FAQなども照合した。取得失敗を全文確認済みとせず、未読の資料を新たな数値性能の根拠にしない。設計資料の出典履歴は [design-sources.md](../../.claude/skills/science-review/references/design-sources.md) に残す。
+
+配置変更の注記（2026-11-05）：この記録のコマンドは当時のもの。2.2.1以降のテスト実行先は `tests/science-review/`、評価資料は `evals/science-review/`。[現行手順](README.md)を参照。以下の過去のモデル評価を今回の更新経路の検証結果としては扱わない。
 
 最終対照の追加参照では、[Honda EU26iJの公式仕様](https://www.honda.co.jp/generator/lineup/eu26ij/)の定格2.6 kVA・定格負荷約3.3時間、NASA熱制御の表7-8のパラフィン融解熱140–280 kJ/kg、[ISS音響報告の抄録](https://ntrs.nasa.gov/citations/20240006442)と[JPLのポンプ振動の実例](https://www.jpl.nasa.gov/news/hear-audio-from-nasas-perseverance-as-it-travels-through-deep-space/)、[FHWA橋脚設計例](https://www.fhwa.dot.gov/bridge/Lrfd/us_ds8.cfm)のStep 8.6、[ARPA-Eの低温廃熱回収RFI](https://arpa-e-foa.energy.gov/Default.aspx?Search=RECOVER&SearchType=)のDE-FOA-0001607背景を照合した。URLの見出しだけで内容を否定せず、該当する節を確認した。
 
