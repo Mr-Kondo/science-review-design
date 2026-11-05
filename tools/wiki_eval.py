@@ -85,7 +85,7 @@ def freeze(phase, destination, candidate=None, selection=None):
     if phase == "maintenance":
         evidence = []
         for name in ("adr/delivery-and-output-contracts.md",
-                     ".claude/skills/science-review/evals/verification-results.md"):
+                     "evals/science-review/verification-results.md"):
             raw = (ROOT / name).read_bytes()
             body = raw.decode("utf-8")
             evidence.append(f"\n資料 {name}:\n{body}")

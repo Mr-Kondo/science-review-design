@@ -33,7 +33,7 @@ jobs:
       - name: Install, update, uninstall, and safety checks
         run: python -m unittest discover -s tests -v
       - name: Skill package and calculation checks
-        run: python -m unittest discover -s .claude/skills/science-review/tests -v
+        run: python -m unittest discover -s tests/science-review -v
       - name: Execute the README PowerShell example
         if: runner.os == 'Windows'
         shell: pwsh

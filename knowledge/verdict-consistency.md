@@ -2,7 +2,7 @@
 
 - 対象: science-review 2.1.0、Claude Codeの本文注入評価。ホスト起動試験ではない。
 - 観測: ST02で冒頭Aを支持とし、後段では4000 Jに訂正した。自己点検追加後も残った。
-- 根拠: [既存評価](../.claude/skills/science-review/evals/verification-results.md)、[Issue #2](https://github.com/Mr-Kondo/science-review-design/issues/2)。原出力はローカルfeedback/issue-1/ST02-after-final.stdout.json。
+- 根拠: [既存評価](../evals/science-review/verification-results.md)、[Issue #2](https://github.com/Mr-Kondo/science-review-design/issues/2)。原出力はローカルfeedback/issue-1/ST02-after-final.stdout.json。
 - 仮説: 正しい式の適用と、誤った数値主張の判定が混同される、または計算前に判定が固定される。原因は未確認。
 - 更新案の条件: 末尾の点検文を繰り返すだけではなく、主張単位または計算から判定までの手順変更を一つ比較する。
 - 反証: 両条件とも整合する、候補でも矛盾する、正しい対照を誤否定する場合は改善の根拠にならない。

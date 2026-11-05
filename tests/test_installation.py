@@ -307,9 +307,8 @@ class InstallationTests(unittest.TestCase):
             self.skipTest("Checkout-only manifest completeness check")
         tracked = subprocess.check_output(["git", "ls-files", "-z", "--", ".claude/skills/science-review"],
                                           cwd=ROOT).decode("utf-8").rstrip("\0").split("\0")
-        # adr/slim-package.md: evals/ and tests/ stay in the repository only.
-        runtime = {name for name in tracked
-                   if name.split("/")[3] not in ("evals", "tests", "__pycache__")}
+        # adr/skills-cli-update.md: the entire skill folder is distributable.
+        runtime = set(tracked)
         self.assertEqual(runtime, {str(path.relative_to(ROOT).as_posix())
                                    for path in install.package_files()})
 

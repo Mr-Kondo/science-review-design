@@ -17,7 +17,7 @@ import tempfile
 SOURCE = Path(__file__).resolve().parents[1] / ".claude/skills/science-review"
 NAME = "science-review"
 MARKER = ".science-review-install.json"
-VERSION = "2.2.0"
+VERSION = "2.2.1"
 PACKAGE_LIST = Path(__file__).with_name("package-files.json")
 TARGETS = {
     "codex": Path(".agents/skills"),

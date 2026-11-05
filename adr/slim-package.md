@@ -15,6 +15,8 @@ supersedes-in-part: delivery-and-output-contracts.md
 
 ## 決定
 
+2026-11-05追記：[Skills CLI対応ADR](skills-cli-update.md)で、評価・テストを同じ場所に残す決定のみ置き換える。配布9ファイルの方針は維持する。以下は当時の配置に基づく記録で、現在の評価資料は `evals/science-review/`、テストは `tests/science-review/` にある。
+
 - `tools/package-files.json` は実行時の9ファイルだけを載せる。`evals/` と `tests/` は同じ場所に置いたままリポジトリにだけ残す。
 - `tools/install.py` は `references`・`assets`・`scripts` 以外の配布を拒否する。
 - 配布一覧と追跡ファイルの一致テストは、`evals/`・`tests/` を除いて照合する。配置先でスキルのテストを走らせるテストは、配置先に `tests/`・`evals/` が無いことの確認に置き換える。

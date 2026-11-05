@@ -8,7 +8,7 @@ import sys
 import unittest
 
 
-SCRIPT = Path(__file__).resolve().parents[1] / "scripts" / "dimcheck.py"
+SCRIPT = Path(__file__).resolve().parents[2] / ".claude/skills/science-review/scripts/dimcheck.py"
 
 
 class DimcheckTests(unittest.TestCase):

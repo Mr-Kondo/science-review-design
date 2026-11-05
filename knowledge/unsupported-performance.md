@@ -2,7 +2,7 @@
 
 - 対象: science-review 2.1.0、同じ本文注入評価。
 - 観測: ST03は体温による熱電発電の相談。条件付き結論は出るが、面積など未指定のまま性能値を付加した。末尾の自己点検追加だけでは解消を確認できなかった。冷却での再現は未観測で、適用は仮説である。
-- 根拠: [既存評価](../.claude/skills/science-review/evals/verification-results.md)、[Issue #2](https://github.com/Mr-Kondo/science-review-design/issues/2)。原出力はローカルfeedback/issue-1/ST03-after-final.stdout.json。
+- 根拠: [既存評価](../evals/science-review/verification-results.md)、[Issue #2](https://github.com/Mr-Kondo/science-review-design/issues/2)。原出力はローカルfeedback/issue-1/ST03-after-final.stdout.json。
 - 仮説: 具体例を補う挙動が、根拠・条件不足の数値まで作る。原因は未確認。
 - 更新案の条件: 出典や入力から導ける数値と、未取得の性能係数を分ける。既存の禁止文を増やすだけの案は過去失敗と区別する。
 - 反証: 候補でも未取得性能値が出る、正当な算術まで抑制する場合は改善の根拠にならない。

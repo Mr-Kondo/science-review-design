@@ -7,7 +7,9 @@ import re
 import unittest
 
 
-ROOT = Path(__file__).resolve().parents[1]
+REPO = Path(__file__).resolve().parents[2]
+ROOT = REPO / ".claude/skills/science-review"
+EVALS = REPO / "evals/science-review"
 
 
 class PackageTests(unittest.TestCase):
@@ -29,7 +31,7 @@ class PackageTests(unittest.TestCase):
                 self.assertTrue(path.resolve().is_relative_to(ROOT.resolve()))
 
     def test_review_cases_and_fixtures(self):
-        data = json.loads((ROOT / "evals/cases.json").read_text(encoding="utf-8"))
+        data = json.loads((EVALS / "cases.json").read_text(encoding="utf-8"))
         cases = data["cases"]
         self.assertTrue(data["frozen_before_model_execution"])
         self.assertGreaterEqual(len(cases), 20)
@@ -42,17 +44,17 @@ class PackageTests(unittest.TestCase):
                     self.assertTrue(case[field])
                 self.assertTrue(case["scoring"]["criteria"])
                 for fixture in case["fixtures"]:
-                    path = (ROOT / "evals" / fixture).resolve()
-                    self.assertTrue(path.is_relative_to((ROOT / "evals/fixtures").resolve()))
+                    path = (EVALS / fixture).resolve()
+                    self.assertTrue(path.is_relative_to((EVALS / "fixtures").resolve()))
                     self.assertTrue(path.is_file())
                     used.add(path)
-        self.assertEqual(used, {path.resolve() for path in (ROOT / "evals/fixtures").rglob("*") if path.is_file()})
+        self.assertEqual(used, {path.resolve() for path in (EVALS / "fixtures").rglob("*") if path.is_file()})
         for path in used:
             if path.suffix == ".json":
                 json.loads(path.read_text(encoding="utf-8"))
 
     def test_trigger_balance(self):
-        cases = json.loads((ROOT / "evals/trigger-cases.json").read_text(encoding="utf-8"))["cases"]
+        cases = json.loads((EVALS / "trigger-cases.json").read_text(encoding="utf-8"))["cases"]
         self.assertEqual(len(cases), 20)
         self.assertEqual(len({case["id"] for case in cases}), 20)
         self.assertEqual(sum(case["expected_trigger"] is True for case in cases), 10)
@@ -60,7 +62,7 @@ class PackageTests(unittest.TestCase):
         self.assertTrue(all(case["prompt"] and case["reason"] for case in cases))
 
     def test_structure_cases_are_frozen_and_separate_from_model_input(self):
-        data = json.loads((ROOT / "evals/structure-cases.json").read_text(encoding="utf-8"))
+        data = json.loads((EVALS / "structure-cases.json").read_text(encoding="utf-8"))
         self.assertTrue(data["frozen_before_model_execution"])
         cases = data["cases"]
         self.assertEqual(len({case["id"] for case in cases}), 3)
@@ -71,13 +73,13 @@ class PackageTests(unittest.TestCase):
 
     def test_no_project_specific_dependency(self):
         prohibited = re.compile(r"Defy|Project_Defy|天稟|アル|P[0-9]-[PCS]-|P0[〜～]P9|第[0-9０-９]+形態")
-        for path in ROOT.rglob("*"):
-            if {"model-runs", "probe-logs", "extended-raw"}.intersection(path.relative_to(ROOT).parts):
+        for path in (*ROOT.rglob("*"), *EVALS.rglob("*")):
+            if {"model-runs", "probe-logs", "extended-raw"}.intersection(path.relative_to(REPO).parts):
                 continue
             if path.suffix in (".md", ".json", ".py") and path.is_file():
                 if path.name in ("design-sources.md", "verification-results.md", "test_package.py"):
                     continue
-                with self.subTest(path=str(path.relative_to(ROOT))):
+                with self.subTest(path=str(path.relative_to(REPO))):
                     self.assertIsNone(prohibited.search(path.read_text(encoding="utf-8")))
 
     def test_parser_has_no_execution_or_external_dependency(self):
