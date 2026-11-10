@@ -3,6 +3,7 @@ status: accepted
 date: 2026-11-05
 decision-makers: user, Codex
 supersedes-in-part: slim-package.md
+superseded-in-part-by: remove-python-installer.md
 ---
 
 # Skills CLIの標準登録でmainへの更新を可能にする

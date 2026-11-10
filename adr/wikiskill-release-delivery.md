@@ -3,6 +3,7 @@ status: accepted
 date: 2026-11-03
 decision-makers: user, Codex
 supersedes-in-part: wikiskill-trial.md
+superseded-in-part-by: remove-python-installer.md
 ---
 
 # WikiSkill検証の変更をリリースし配置まで完了する

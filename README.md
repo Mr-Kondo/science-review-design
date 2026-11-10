@@ -20,7 +20,7 @@ Claude Codeでは先頭を `/science-review` にする。Gemini Antigravity／An
 
 ### Skills CLIでmainの最新版を追跡する
 
-Node.js 22.20.0以上とGitが必要（Skills CLI 1.7.6で確認）。計算補助コードにはPython 3.10以上も必要。**既存配置がある場合は、先に下の移行手順で退避する。CLIは既存ファイルを置換し、自動バックアップを作らない。**
+Node.js 22.20.0以上とGitが必要（Skills CLI 1.7.6で確認）。計算補助コードにはPython 3.10以上も必要（標準ライブラリのみ。標準出力・標準エラーはUTF-8）。**既存配置がある場合は、先に下の移行手順で退避する。CLIは既存ファイルを置換し、自動バックアップを作らない。**
 
 初回だけGitHubの取得元を登録する。
 
@@ -34,87 +34,17 @@ npx skills remove science-review --global --yes
 
 登録後は `npx skills update` でも更新できるが、他の登録済みスキルも対象になる。更新先は最新Releaseのタグではなく **mainのスキルフォルダ**。版番号の比較ではなくフォルダの変更を追跡する。タグへ固定した導入はmain追従にならない。
 
-CLI 1.7.6では `~/.agents/skills/science-review/` に本体を置き、Codex・Antigravity IDE/CLIはこの共有配置を使い、Claude Codeにはリンクを作る（リンク失敗時はコピー）。Python版のAntigravity IDE配置先 `~/.gemini/config/skills/` とは異なるため、登録時の配置表示を確認する。プロジェクト配置は、**このソースリポジトリ以外の利用先**で初回登録の `--global` を外して実行し、更新は `npx skills update science-review --project`、削除は `npx skills remove science-review --yes` とする。ソースリポジトリ自身に実行すると本体を上書きするおそれがある。
+CLI 1.7.6では `~/.agents/skills/science-review/` に本体を置き、Codex・Antigravity IDE/CLIはこの共有配置を使い、Claude Codeにはリンクを作る（リンク失敗時はコピー）。旧Python版のAntigravity IDE配置先 `~/.gemini/config/skills/` とは異なるため、登録時の配置表示を確認する。プロジェクト配置は、**このソースリポジトリ以外の利用先**で初回登録の `--global` を外して実行し、更新は `npx skills update science-review --project`、削除は `npx skills remove science-review --yes` とする。ソースリポジトリ自身に実行すると本体を上書きするおそれがある。
 
-#### 既存のPython配置から移行する
+#### 旧Pythonインストーラー（2.2.1以前）の配置から移行する
 
-1. 利用ホストを閉じる。下表の4配置先、および `~/.codex/skills/science-review/` 等の同名配置・リンクを確認する。ローカル変更があれば保持する。
-2. 既存の各 `science-review/` を、スキル探索対象外のバックアップ先へ移す（例：各 `skills/` の親の `science-review-backups/` 以下に重複しない名前で退避）。リンクの場合はリンク先を確認し、本体を消さない。Python管理コピーは `python3 tools/install.py --dry-run` で変更の有無を検査できる。
-3. 上の `skills add` を実行する。登録後はCLIで管理し、同じ配置にPython版を重ねて使わない。CLIのlockファイルは手動作成・編集しない。
-4. 旧Antigravity IDE配置を引き続き必要とする環境では、退避した `~/.gemini/config/skills/science-review` の代わりにCLIの本体へのリンクを作る。この互換リンクはCLI管理外なので、削除時はリンクだけを別途取り除く。リンクを使えない環境ではPython版の管理を続ける。
+1. 利用ホストを閉じる。旧インストーラーの4配置先（`~/.agents/skills/`、`~/.claude/skills/`、`~/.gemini/config/skills/`、`~/.gemini/antigravity-cli/skills/` の各 `science-review/`）、および `~/.codex/skills/science-review/` 等の同名配置・リンクを確認する。ローカル変更があれば保持する。
+2. 既存の各 `science-review/` を、スキル探索対象外のバックアップ先へ移す（例：各 `skills/` の親の `science-review-backups/` 以下に重複しない名前で退避）。リンクの場合はリンク先を確認し、本体を消さない。旧インストーラーの管理ファイル `.science-review-install.json` が残る配置も、そのまま退避する。
+3. 上の `skills add` を実行する。登録後はCLIで管理する。CLIのlockファイルは手動作成・編集しない。
+4. 旧Antigravity IDE配置を引き続き必要とする環境では、退避した `~/.gemini/config/skills/science-review` の代わりにCLIの本体へのリンクを作る。この互換リンクはCLI管理外なので、削除時はリンクだけを別途取り除く。リンクを使えない環境では、旧配置が必要なホストを使わない。
 5. 登録された取得元・本体9ファイル・参照リンクを確認し、ホストを再起動する。更新後もローカル変更を保持する必要がある場合は、CLI更新前に別途退避する。配置確認だけでは製品上の読込成功を保証しない。
 
 移行で退避したコピーは、配置照合と利用確認後に削除する。途中失敗した場合は保持し、退避コピーから復旧する。
-
-### Pythonインストーラーで管理する
-
-Python 3.10以上が必要。Windowsでは以下の `python3` を `python` と読み替え、`python --version` でバージョンを確認する。追加パッケージやGitはスクリプトの実行に不要。
-
-スクリプトと計算補助ツールの標準出力・標準エラーはUTF-8。別のプログラムから呼び出す場合もUTF-8で読み取る。
-
-このリポジトリをcloneするか、[リリース](https://github.com/Mr-Kondo/science-review-design/releases)のソースアーカイブを展開して、そのフォルダで実行する。
-
-```sh
-# インストール。ユーザー用のCodex、Claude Code、Antigravity IDE/CLIへコピーする
-python3 tools/install.py
-# 更新。新しい版のリポジトリ／アーカイブから同じコマンドを実行する
-python3 tools/install.py
-# アンインストール
-python3 tools/uninstall.py
-```
-
-既定では次の4配置先へコピーする。`--target` で一つに限定できる。コピー方式のため、シンボリックリンクの作成権限は不要。インストール・更新後は対象ホストを再起動する。
-
-| target | ユーザー配置先 |
-| --- | --- |
-| `codex` | `~/.agents/skills/science-review/` |
-| `claude` | `~/.claude/skills/science-review/` |
-| `antigravity` | `~/.gemini/config/skills/science-review/` |
-| `antigravity-cli` | `~/.gemini/antigravity-cli/skills/science-review/` |
-
-Antigravityの配置先は2026-10-31時点の比較先スキルの実装に基づく。IDE／CLIでの実読込は未確認。
-
-プロジェクト配置ではClaude Codeは `.claude/skills/`、他は共通の `.agents/skills/`。`--target all` は重なる配置先を一度だけ処理する。
-プロジェクトでCodex／Antigravityのいずれかを指定して削除すると、この共通配置を利用する他ホストからも使えなくなる。
-
-特定のプロジェクトに配置する場合は、存在するプロジェクトフォルダを指定する。更新・削除にも同じオプションを使う。
-
-```sh
-python3 tools/install.py --scope project --project-dir /path/to/project --target codex
-python3 tools/uninstall.py --scope project --project-dir /path/to/project --target codex
-# 実行前の確認。書き込み・削除は行わない
-python3 tools/install.py --dry-run
-python3 tools/uninstall.py --dry-run
-```
-
-管理用ファイル `.science-review-install.json` に配置したファイルのSHA-256を記録する。更新・削除は、このスクリプトで配置した内容がそのまま残っている場合だけ行う。変更・欠落・追加ファイル、手動コピー、シンボリックリンクがある場合は停止する。必要な内容をバックアップし、対象の `science-review/` フォルダを別の場所へ移してから再実行する。他のスキルや親フォルダは削除しない。Pythonが生成した `__pycache__/*.pyc` は変更扱いにしない。
-
-更新で置換と復旧の両方が失敗した場合は、元の配置を一時退避先に残し、その場所をエラー出力に表示する。
-
-正常な更新でも、置換前の配置を `skills/` の親の `science-review-backups/` に保存し、`backup:` に場所を表示する。スキル探索対象の外に置き、インストーラー自体は自動削除しない。手動で削除する場合は、更新と配置照合の成功および対象を確認する。復旧が必要な途中失敗時は保持する。バックアップが失敗した場合は置換しない。メンテナ向けの削除手順は[リリース・配置のADR](adr/wikiskill-release-delivery.md)を参照。
-名前は更新先の版・UTC日時・乱数を含む。削除後もバックアップは残る。プロジェクト配置ではバックアップもプロジェクト内になるため、内容を確認し、Gitへの追加・公開を避ける。
-同一内容の再インストールでもバックアップは増える。Windowsでは深いプロジェクトパスを避け、OSのパス長制限に注意する。
-
-[配布一覧](tools/package-files.json)にあるスキル本体・参照資料・テンプレート・補助コードの9ファイルだけをコピーする。評価データ・評価記録・テストはリポジトリにだけ置き、配置しない。ローカルで追加したファイルは一覧になければ配布しない。一覧の更新時は追跡ファイルとの一致をテストで確認する。ローカルのモデル実行ログや設計書の原本はコピーしない。全配置先を事前検査してから処理するが、途中のOSエラーでは一部だけ処理済みになる場合がある。エラーを解消して同じコマンドを再実行する。同じ配置先への更新・削除を同時に実行しない。
-
-WindowsのPowerShell 7で以下をリポジトリのルートから実行すると、検証用プロジェクトへのインストール・更新・削除を試せる。検証先は `feedback/` 内に新規作成し、終了時に片付ける。このブロックをWindows CIでも実行する。Windows PowerShell 5.1は今回の検証対象に含めない。
-
-<!-- docs-smoke:start -->
-```powershell
-$ErrorActionPreference = 'Stop'
-$project = Join-Path (Get-Location) ('feedback/日本語 project-' + [guid]::NewGuid())
-New-Item -ItemType Directory -Path $project -Force | Out-Null
-try {
-    foreach ($script in @('install.py', 'install.py', 'uninstall.py')) {
-        $scriptPath = Join-Path 'tools' $script
-        python $scriptPath --scope project --project-dir $project --target all
-        if ($LASTEXITCODE -ne 0) { throw "$script failed: $LASTEXITCODE" }
-    }
-} finally {
-    Remove-Item -LiteralPath $project -Recurse -Force
-}
-```
-<!-- docs-smoke:end -->
 
 ## 検査
 
@@ -129,7 +59,7 @@ python3 .agents/skills/science-review/scripts/dimcheck.py eq J 'kg*m²/s²'
 
 [評価入力・手順](evals/science-review/README.md)と[検査記録](evals/science-review/verification-results.md)を参照。実行結果・検証用ファイル・モデルの全ログは `feedback/` に保持し、Gitには含めない。公開する評価概要と匿名fixtureを区別している。
 
-[GitHub ActionsのCI](https://github.com/Mr-Kondo/science-review-design/actions/workflows/ci.yml)は、Linux・Windows・macOSとPython 3.10・3.14の計6構成で、上記2つの検査スイートを実行する。インストール・更新・削除、日本語・空白を含むパス、変更の保護、更新失敗時の復旧、配置したスキルの補助コードと検査の実行を含む。WindowsではREADMEのPowerShell 7ブロックも実行する。製品アプリ上の起動・モデルの判断・専門家評価はCIの検査対象に含めない。
+[GitHub ActionsのCI](https://github.com/Mr-Kondo/science-review-design/actions/workflows/ci.yml)は、Linux・Windows・macOSとPython 3.10・3.14の計6構成で、上記2つの検査スイートを実行する。更新用ツールの検査、スキルの構成・評価ケースの整合、計算補助コードの検査を含む。製品アプリ上の起動・モデルの判断・専門家評価はCIの検査対象に含めない。
 
 ## 設計の由来
 
@@ -137,12 +67,14 @@ python3 .agents/skills/science-review/scripts/dimcheck.py eq J 'kg*m²/s²'
 
 2.1.0の少数例比較では指定構造を保持したが、冒頭の判定と計算結論の不整合、未出典の性能値の付加が変更前後とも残った。[Issue #2](https://github.com/Mr-Kondo/science-review-design/issues/2)で追跡し、科学判断の精度向上は主張しない。
 
+版2.2.0では、配置するファイルを35個から9個（約55 KB）に絞った。評価データ・評価記録・テストは配置しない。経緯と判断は[配布物の絞り込みADR](adr/slim-package.md)と[Issue #7](https://github.com/Mr-Kondo/science-review-design/issues/7)に記録した。2.1.1までの経緯は[リリースと配置のADR](adr/wikiskill-release-delivery.md)にある。
+版2.2.1では[Skills CLI対応ADR](adr/skills-cli-update.md)に従い、評価・テストをスキルフォルダ外へ移す。配布9ファイルと科学監修の指示本文は2.2.0と同じ。
+Pythonインストーラー（`tools/install.py`・`tools/uninstall.py`・配布一覧）は[削除のADR](adr/remove-python-installer.md)に従い廃止した。導入と更新はSkills CLIだけで行う。
+
 更新時だけ使う[知識索引](knowledge/index.md)と[有限比較のADR](adr/wikiskill-trial.md)は、[Issue #4](https://github.com/Mr-Kondo/science-review-design/issues/4)の検証用。通常の監修やインストールには知識層を追加しない。
 `python3 tools/wiki_eval.py --help` で計画凍結・実行・採点確認の手順を確認できる。ログは新しい `feedback/` の実行フォルダへ保存し、同じ試行を上書きしない。索引の比較と候補スキルの比較を分け、改善が示されなければ候補を採用しない。
 
 [2026-11-03の比較結果](docs/wiki-trial-results.md)では索引なし／ありが同点、候補は反復改善と回帰なしの条件を満たさず不採用。更新用索引・比較ツールはリポジトリとリリースのソースアーカイブに含め、通常のスキル配置には含めない。
-版2.2.0では、配置するファイルを35個から9個（約55 KB）に絞った。評価データ・評価記録・テストは配置しない。経緯と判断は[配布物の絞り込みADR](adr/slim-package.md)と[Issue #7](https://github.com/Mr-Kondo/science-review-design/issues/7)に記録した。2.1.1までの経緯は[リリースと配置のADR](adr/wikiskill-release-delivery.md)にある。
-版2.2.1では[Skills CLI対応ADR](adr/skills-cli-update.md)に従い、評価・テストをスキルフォルダ外へ移す。配布9ファイルと科学監修の指示本文は2.2.0と同じ。
 このツールは本件専用であり、第一段階には非公開の既存ST02/ST03記録が必要なため、cloneだけでは実行できない。
 Claude Code 2.1.316のsafe-mode等を前提にし、別CLI版の互換性は未確認。user設定は接続先のため保持し、空の一時cwdで実行する。
 実行には既存のモデル利用契約を使う。以下のrunはモデルを呼び出すため、再検証の予算・採点規則を先に決める。
