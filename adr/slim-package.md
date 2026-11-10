@@ -3,6 +3,7 @@ status: accepted
 date: 2026-11-03
 decision-makers: user, Claude Code
 supersedes-in-part: delivery-and-output-contracts.md
+superseded-in-part-by: remove-python-installer.md
 ---
 
 # 配布物を実行時に使うファイルだけに絞る

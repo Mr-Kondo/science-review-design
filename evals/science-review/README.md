@@ -2,7 +2,7 @@
 
 `evals/science-review/` と `tests/science-review/` はリポジトリ専用で、スキルフォルダの外に置く（[ADR](../../adr/skills-cli-update.md)）。スキル評価やdimcheck改訂のときだけ、cases.json・trigger-cases.json・fixtures・tests/science-review/test_dimcheck.py を使う。
 
-共有本体は `.claude/skills/science-review/`。Codex用の `.agents/skills/science-review/` は共有本体への相対リンク。配布時はリポジトリのインストーラーで各ホストへコピーする。ユーザー配置とプロジェクト配置はリポジトリのREADMEを参照。
+共有本体は `.claude/skills/science-review/`。Codex用の `.agents/skills/science-review/` は共有本体への相対リンク。配布はSkills CLIで行う。導入手順はリポジトリのREADMEを参照。
 
 ## 利用例
 
