@@ -94,3 +94,7 @@ python3 tools/wiki_eval.py summarize feedback/new-trial-quality feedback/new-tri
 凍結後にコード・CLI版・入力が変わった場合や途中失敗時は停止し、同じフォルダの再開・上書きはしない。新しい計画を使う場合も原因と追加呼出の扱いを記録する。
 
 [実装指示](claude-code-implementation-prompt.md)、[設計書](research-and-design.md)、[固定版の元資料](source-manifest.json)、[設計出典・確認状態](.claude/skills/science-review/references/design-sources.md)を保持している。元資料の取得履歴と今回の新版の検査結果は別記録。未確認のライセンスを推定して付与していない。
+
+## ライセンス
+
+このリポジトリの独自の内容は [MIT License](LICENSE) で公開する。参考にした第三者の資料には及ばず、それぞれの条件に従う。
